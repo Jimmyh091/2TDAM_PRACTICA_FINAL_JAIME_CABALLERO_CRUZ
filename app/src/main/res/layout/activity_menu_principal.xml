@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="50dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/archivovacio" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/menu_recycler_cartas"

@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="50dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/archivovacio"/>
 
         <TextView
             android:id="@+id/perfil_nombre"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textSize="20sp"
-            android:text="Usuario"
+            android:text="nombreUsuario"
             app:layout_constraintEnd_toEndOf="@+id/perfil_foto"
             app:layout_constraintStart_toStartOf="@+id/perfil_foto"
             app:layout_constraintTop_toBottomOf="@+id/perfil_foto" />

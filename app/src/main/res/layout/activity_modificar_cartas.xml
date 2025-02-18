@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="@+id/modificarCarta_plantilla"
         app:layout_constraintStart_toStartOf="@+id/modificarCarta_plantilla"
         app:layout_constraintTop_toTopOf="@+id/modificarCarta_plantilla"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:src="@drawable/archivovacio" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/modificarCarta_til_titulo"
