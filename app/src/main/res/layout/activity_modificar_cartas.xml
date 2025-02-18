@@ -33,13 +33,12 @@
         android:layout_width="0dp"
         android:layout_height="187dp"
         android:layout_margin="27dp"
-        android:scaleType="centerCrop"
         app:layout_constraintVertical_bias="0.31"
         app:layout_constraintBottom_toBottomOf="@+id/modificarCarta_plantilla"
         app:layout_constraintEnd_toEndOf="@+id/modificarCarta_plantilla"
         app:layout_constraintStart_toStartOf="@+id/modificarCarta_plantilla"
         app:layout_constraintTop_toTopOf="@+id/modificarCarta_plantilla"
-        android:src="@drawable/archivovacio" />
+        android:src="@drawable/archivovacioblanco" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/modificarCarta_til_titulo"
