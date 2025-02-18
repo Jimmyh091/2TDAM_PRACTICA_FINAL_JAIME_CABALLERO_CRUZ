@@ -19,16 +19,16 @@
             android:name=".cartas.VerCarta"
             android:exported="false" />
         <activity
-            android:name=".eventos.modificarEventos"
+            android:name=".eventos.ModificarEvento"
             android:exported="false" />
         <activity
-            android:name=".eventos.crearEventos"
+            android:name=".eventos.CrearEvento"
             android:exported="false" />
         <activity
-            android:name=".cartas.modificarCartas"
+            android:name=".cartas.ModificarCarta"
             android:exported="false" />
         <activity
-            android:name=".cartas.crearCartas"
+            android:name=".cartas.CrearCarta"
             android:exported="false" />
         <activity
             android:name=".Perfil"
