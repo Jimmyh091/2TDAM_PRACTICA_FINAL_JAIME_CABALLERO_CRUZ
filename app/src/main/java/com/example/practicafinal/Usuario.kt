@@ -3,7 +3,7 @@ package com.example.practicafinal
 import com.example.practicafinal.cartas.Carta
 import com.example.practicafinal.eventos.Evento
 
-class Usuario (
+data class Usuario (
     var admin : Boolean = false,
     var nombre : String = "User",
     var correo : String = "error@gmail.com",

@@ -2,7 +2,7 @@ package com.example.practicafinal.eventos
 
 import com.example.practicafinal.Usuario
 
-class Evento (
+data class Evento (
     var nombre: String = "Event",
     var descripcion: String = "Description",
     var fecha: String = ""/*?*/,

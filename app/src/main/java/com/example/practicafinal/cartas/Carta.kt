@@ -1,6 +1,6 @@
 package com.example.practicafinal.cartas
 
-class Carta (
+data class Carta (
     var nombre: String = "Card",
     var descripcion: String = "Description",
     var precio : Float = -1f,
