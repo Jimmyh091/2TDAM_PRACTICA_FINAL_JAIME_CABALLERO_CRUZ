@@ -1,10 +1,9 @@
 package com.example.practicafinal.cartas
 
 class Carta (
-    var nombre: String,
-    var descripcion: String,
-    var precio : Float,
-    var imagen : String?,
-    var stock : Int ){
-
-}
+    var nombre: String = "Card",
+    var descripcion: String = "Description",
+    var precio : Float = -1f,
+    var imagen : String? = null,
+    var stock : Int = -1
+)
