@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".cartas.crearCartas">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Crear carta"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="@+id/crearCarta_plantilla" />
+
     <ImageView
         android:id="@+id/crearCarta_plantilla"
         android:layout_width="0dp"
