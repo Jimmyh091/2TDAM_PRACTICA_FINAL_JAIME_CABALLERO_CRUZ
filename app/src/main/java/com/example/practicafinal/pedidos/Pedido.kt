@@ -1,6 +1,4 @@
-package com.example.practicafinal
-
-import com.example.practicafinal.cartas.Carta
+package com.example.practicafinal.pedidos
 
 data class Pedido (
     var usuario : String,
