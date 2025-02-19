@@ -35,10 +35,10 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="10dp"
+            android:src="@drawable/aniadir"
             app:layout_constraintBottom_toBottomOf="@+id/menu_textview_cartas"
             app:layout_constraintStart_toEndOf="@+id/menu_textview_cartas"
-            app:layout_constraintTop_toTopOf="@+id/menu_textview_cartas"
-            android:src="@drawable/aniadir"/>
+            app:layout_constraintTop_toTopOf="@+id/menu_textview_cartas" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/menu_recycler_cartas"
