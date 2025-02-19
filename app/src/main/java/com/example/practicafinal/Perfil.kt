@@ -32,6 +32,33 @@ class Perfil : AppCompatActivity() {
 
         binding.perfilBotonAniadirDinero.setOnClickListener {
 
+            /* BD
+            OBTENER DATOS USUARIO COGER CARTAS Y EVENTOS
+            */
+
+            var listaCartas = mutableListOf("")
+            var listaEventos = mutableListOf("")
+
+            var usuarioActual = Usuario(
+                admin = sp.getBoolean("admin", false),
+                nombre = sp.getString("nombre", "")!!,
+                correo = sp.getString("correo", "")!!,
+                contrasenia = sp.getString("contrasenia", "")!!,
+                imagen = null,
+                dinero = sp.getFloat("dinero", 0f) + 10f,
+                cartas_compradas = listaCartas,
+                eventos_apuntados = listaEventos
+            )
+
+            val editor = sp.edit()
+            editor.putFloat("dinero", usuarioActual.dinero)
+            editor.apply()
+
+            binding.perfilDinero.text = usuarioActual.dinero.toString()
+
+            /* BD
+            ACTUALIZAR DINERO
+            */
         }
 
         binding.perfilRecyclerCartas
