@@ -2,6 +2,7 @@ package com.example.practicafinal.cartas
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,15 @@ class CrearCarta : AppCompatActivity() {
             insets
         }
 
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listOf("Blanco", "Negro", "Azul", "Rojo", "Verde", "Amarillo"))
+        binding.crearCartaSpinnerCategoria.adapter = adapter
+
+        binding.crearCartaImagen.setOnClickListener{
+            /*
+            COGER IMAGEN DEL MOVIL
+            */
+        }
+
         binding.crearCartaBotonCrear.setOnClickListener {
 
             /* BD
@@ -51,6 +61,7 @@ class CrearCarta : AppCompatActivity() {
                 val carta = Carta(
                     binding.crearCartaTietTitulo.text.toString(),
                     binding.crearCartaTietDescripcion.text.toString(),
+                    binding.crearCartaSpinnerCategoria.selectedItem.toString(),
                     binding.crearCartaTietPrecio.text.toString().toFloat(),
                     null,
                     binding.crearCartaTietStock.text.toString().toInt(),
