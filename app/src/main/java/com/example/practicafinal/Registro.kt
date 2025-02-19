@@ -84,6 +84,7 @@ class Registro : AppCompatActivity() {
 
         var editor = usuarioSharedPreferences.edit()
 
+        editor.clear()
         editor.putString("nombre", usuario.nombre)
         editor.putString("contrasenia", usuario.contrasenia)
         editor.putString("correo", usuario.correo)

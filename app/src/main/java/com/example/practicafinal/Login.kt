@@ -62,10 +62,13 @@ class Login : AppCompatActivity() {
     }
 
     fun actualizarShared(usuario: Usuario){
+
+
         var usuarioSharedPreferences = getSharedPreferences("usuario", MODE_PRIVATE)
 
         var editor = usuarioSharedPreferences.edit()
 
+        editor.clear()
         editor.putString("nombre", usuario.nombre)
         editor.putString("contrasenia", usuario.contrasenia)
         editor.putString("correo", usuario.correo)
