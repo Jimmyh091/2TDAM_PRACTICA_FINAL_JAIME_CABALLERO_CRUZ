@@ -131,6 +131,7 @@
                 app:layout_constraintStart_toStartOf="@+id/menu_recycler_cartas">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/menu_tiet_buscarCartas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="hint" />
