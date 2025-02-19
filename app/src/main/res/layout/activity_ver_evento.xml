@@ -163,12 +163,12 @@
                 app:layout_constraintStart_toStartOf="@+id/verEvento_aforo"
                 app:layout_constraintTop_toBottomOf="@+id/verEvento_aforo" />
 
-            <TextView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/verEvento_usuarios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="ERROR"
+                tools:listitem="item"
                 app:layout_constraintStart_toStartOf="@+id/verEvento_textview_usuarios"
                 app:layout_constraintTop_toBottomOf="@+id/verEvento_textview_usuarios" />
 
