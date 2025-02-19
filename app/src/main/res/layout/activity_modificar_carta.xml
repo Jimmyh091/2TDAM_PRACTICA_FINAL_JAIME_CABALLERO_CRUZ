@@ -95,12 +95,16 @@
                     android:layout_height="wrap_content"
                     android:hint="Título" />
 
-                <Spinner
-                    android:id="@+id/modificarCarta_spinner_categoria"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_weight="1" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/modificarCarta_spinner_categoria"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/modificarCarta_til_titulo"
+                app:layout_constraintStart_toStartOf="@+id/modificarCarta_til_titulo"
+                app:layout_constraintTop_toBottomOf="@+id/modificarCarta_til_titulo" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/modificarCarta_til_categoria"
@@ -114,10 +118,10 @@
                 android:id="@+id/modificarCarta_til_descripcion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="@+id/modificarCarta_imagen"
                 app:layout_constraintStart_toStartOf="@+id/modificarCarta_imagen"
-                app:layout_constraintTop_toBottomOf="@+id/modificarCarta_til_titulo">
+                app:layout_constraintTop_toBottomOf="@+id/modificarCarta_spinner_categoria">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/modificarCarta_tiet_descripcion"
@@ -127,6 +131,41 @@
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/modificarCarta_til_precio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/modificarCarta_til_descripcion"
+                app:layout_constraintStart_toStartOf="@+id/modificarCarta_til_descripcion"
+                app:layout_constraintTop_toBottomOf="@+id/modificarCarta_til_descripcion">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/modificarCarta_tiet_precio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Precio"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/modificarCarta_til_stock"
+                android:layout_width="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/modificarCarta_til_precio"
+                app:layout_constraintStart_toStartOf="@+id/modificarCarta_til_precio"
+                app:layout_constraintEnd_toEndOf="@+id/modificarCarta_til_precio">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/modificarCarta_tiet_stock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Stock" />
+            </com.google.android.material.textfield.TextInputLayout>
+            
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
