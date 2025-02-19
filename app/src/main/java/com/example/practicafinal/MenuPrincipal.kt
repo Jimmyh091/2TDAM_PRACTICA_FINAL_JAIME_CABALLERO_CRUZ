@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -58,19 +57,15 @@ class MenuPrincipal : AppCompatActivity() {
         var lisa = getResources().getStringArray(R.array.categorias)
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, lisa )
         binding.menuSpinnerCategoriaCartas.adapter = adapter
-        binding.menuSpinnerCategoriaCartas.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>,
-                                        view: View, position: Int, id: Long) {
-                Toast.makeText(applicationContext, "textito" + " " +
-                        "" + lisa[position], Toast.LENGTH_SHORT).show()
+        binding.menuSpinnerCategoriaCartas.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                // filtrar el recycler por categoria
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
+                // otnto
             }
-
-}
+        }
 
     }
 }
