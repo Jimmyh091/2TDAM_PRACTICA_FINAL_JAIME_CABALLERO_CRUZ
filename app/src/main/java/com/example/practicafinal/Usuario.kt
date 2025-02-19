@@ -10,6 +10,6 @@ data class Usuario (
     var contrasenia : String = "",
     var imagen : String? = null,
     var dinero : Float = 0f,
-    var cartas_compradas : MutableList<Carta> = mutableListOf(),
-    var eventos_apuntados : MutableList<Evento> = mutableListOf()
+    var cartas_compradas : MutableList<String> = mutableListOf(), // id de cartas
+    var eventos_apuntados : MutableList<String> = mutableListOf() // id de eventos
 )

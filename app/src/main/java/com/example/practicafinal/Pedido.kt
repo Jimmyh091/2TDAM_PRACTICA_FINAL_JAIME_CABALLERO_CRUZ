@@ -3,7 +3,8 @@ package com.example.practicafinal
 import com.example.practicafinal.cartas.Carta
 
 data class Pedido (
-    var usuario : Usuario,
-    var carta : Carta,
+    var usuario : String,
+    var carta : String,
+    var fecha : String,
     var procesado : Boolean = false
 )
