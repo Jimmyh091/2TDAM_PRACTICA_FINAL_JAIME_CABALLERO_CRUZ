@@ -7,4 +7,116 @@
     android:layout_height="match_parent"
     tools:context=".cartas.VerCarta">
 
+    <TextView
+        android:id="@+id/verCarta_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ERROR"
+        android:textSize="30sp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/verCarta_imagen"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verCarta_nombre"
+        android:src="@drawable/archivovacio"/>
+
+    <TextView
+        android:id="@+id/verCarta_textview_categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:text="Categoria:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verCarta_imagen" />
+
+    <TextView
+        android:id="@+id/verCarta_categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="ERROR"
+        app:layout_constraintStart_toStartOf="@+id/verCarta_textview_categoria"
+        app:layout_constraintTop_toBottomOf="@+id/verCarta_textview_categoria" />
+
+    <TextView
+        android:id="@+id/verCarta_textview_descripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripción"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@+id/verCarta_categoria"
+        app:layout_constraintTop_toBottomOf="@+id/verCarta_categoria" />
+
+    <TextView
+        android:id="@+id/verCarta_descripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="ERROR"
+        app:layout_constraintStart_toStartOf="@+id/verCarta_textview_descripcion"
+        app:layout_constraintTop_toBottomOf="@id/verCarta_textview_descripcion" />
+
+    <Button
+        android:id="@+id/verCarta_boton_crearPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear pedido"
+        android:layout_margin="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/verCarta_precio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ERROR"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/verCarta_imagen"
+        app:layout_constraintStart_toEndOf="@+id/verCarta_imagen" />
+
+    <TextView
+        android:id="@+id/verCarta_textview_stock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stock:"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@+id/verCarta_descripcion"
+        app:layout_constraintTop_toBottomOf="@+id/verCarta_descripcion" />
+
+    <TextView
+        android:id="@+id/verCarta_stock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ERROR"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/verCarta_textview_stock"
+        app:layout_constraintTop_toBottomOf="@+id/verCarta_textview_stock" />
+
+    <ImageView
+        android:id="@+id/verCarta_borrar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"
+        android:src="@drawable/borrar"
+        app:layout_constraintBottom_toBottomOf="@+id/verCarta_editar"
+        app:layout_constraintStart_toEndOf="@id/verCarta_editar"
+        app:layout_constraintTop_toTopOf="@+id/verCarta_editar" />
+
+    <ImageView
+        android:id="@+id/verCarta_editar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/modificar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
