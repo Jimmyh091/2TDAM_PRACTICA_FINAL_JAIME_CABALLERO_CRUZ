@@ -81,24 +81,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/perfil_foto" />
 
             <TextView
-                android:id="@+id/perfil_correo"
+                android:id="@+id/perfil_textview_correo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:text="ERROR"
+                android:text="Correo:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/perfil_nombre" />
+
+            <TextView
+                android:id="@+id/perfil_correo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="ERROR"
+                app:layout_constraintStart_toStartOf="@+id/perfil_textview_correo"
+                app:layout_constraintTop_toBottomOf="@+id/perfil_textview_correo" />
 
             <TextView
                 android:id="@+id/perfil_titulo_cartas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:text="Cartas obtenidas"
+                android:layout_marginTop="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/perfil_correo" />
+                app:layout_constraintTop_toBottomOf="@+id/perfil_dinero" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/perfil_recycler_cartas"
@@ -114,8 +123,8 @@
                 android:id="@+id/perfil_titulo_eventos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:text="Eventos apuntados"
+                android:layout_marginTop="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/perfil_recycler_cartas" />
@@ -134,6 +143,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 app:layout_constraintTop_toBottomOf="@id/perfil_recycler_eventos" />
+
+            <TextView
+                android:id="@+id/perfil_textview_dinero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Dinero:"
+                app:layout_constraintStart_toStartOf="@+id/perfil_correo"
+                app:layout_constraintTop_toBottomOf="@+id/perfil_correo" />
+
+            <TextView
+                android:id="@+id/perfil_dinero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="ERROR"
+                app:layout_constraintStart_toStartOf="@+id/perfil_correo"
+                app:layout_constraintTop_toBottomOf="@+id/perfil_textview_dinero" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
