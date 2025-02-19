@@ -6,8 +6,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.practicafinal.Perfil
 import com.example.practicafinal.R
 import com.example.practicafinal.databinding.ActivityVerEventoBinding
+import com.example.practicafinal.menu.Menu
 
 class VerEvento : AppCompatActivity() {
     
@@ -25,6 +27,20 @@ class VerEvento : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.verEventoBannerAtras.setOnClickListener {
+            finish()
+        }
+
+        binding.verEventoBannerLogo.setOnClickListener {
+            val intent = Intent(this, Menu::class.java)
+            startActivity(intent)
+        }
+
+        binding.verEventoBannerFotoPerfil.setOnClickListener {
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
         }
 
         idEvento = intent.getStringExtra("idEvento").toString()

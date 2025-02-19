@@ -8,7 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.practicafinal.Menu
+import com.example.practicafinal.Perfil
+import com.example.practicafinal.menu.Menu
 import com.example.practicafinal.R
 import com.example.practicafinal.databinding.ActivityCrearCartaBinding
 
@@ -27,6 +28,20 @@ class CrearCarta : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.crearCartaBannerAtras.setOnClickListener {
+            finish()
+        }
+
+        binding.crearCartaBannerLogo.setOnClickListener {
+            val intent = Intent(this, Menu::class.java)
+            startActivity(intent)
+        }
+
+        binding.crearCartaBannerFotoPerfil.setOnClickListener {
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
         }
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listOf(resources.getStringArray(R.array.categorias)))

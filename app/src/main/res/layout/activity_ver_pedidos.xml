@@ -8,14 +8,14 @@
     tools:context=".pedidos.VerPedidos">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/modificarCarta_banner"
+        android:id="@+id/verPedidos_banner"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/rojoclaro"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/modificarCarta_banner_atras"
+            android:id="@+id/verPedidos_banner_atras"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:adjustViewBounds="true"
@@ -26,7 +26,7 @@
             android:src="@drawable/atras" />
 
         <ImageView
-            android:id="@+id/modificarCarta_banner_logo"
+            android:id="@+id/verPedidos_banner_logo"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_margin="18dp"
@@ -38,7 +38,7 @@
             android:src="@drawable/magic" />
 
         <ImageView
-            android:id="@+id/modificarCarta_banner_fotoPerfil"
+            android:id="@+id/verPedidos_banner_fotoPerfil"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_margin="15dp"
@@ -53,7 +53,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/modificarCarta_banner">
+        app:layout_constraintTop_toBottomOf="@+id/verPedidos_banner">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

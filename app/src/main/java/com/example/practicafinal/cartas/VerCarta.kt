@@ -6,7 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.practicafinal.Menu
+import com.example.practicafinal.Perfil
+import com.example.practicafinal.menu.Menu
 import com.example.practicafinal.R
 import com.example.practicafinal.databinding.ActivityVerCartaBinding
 import com.example.practicafinal.pedidos.Pedido
@@ -27,6 +28,20 @@ class VerCarta : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.verCartaBannerAtras.setOnClickListener {
+            finish()
+        }
+
+        binding.verCartaBannerLogo.setOnClickListener {
+            val intent = Intent(this, Menu::class.java)
+            startActivity(intent)
+        }
+
+        binding.verCartaBannerFotoPerfil.setOnClickListener {
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
         }
 
         idCarta = intent.getStringExtra("idCarta").toString()

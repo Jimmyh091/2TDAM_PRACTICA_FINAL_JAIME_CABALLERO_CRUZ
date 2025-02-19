@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.practicafinal.databinding.ActivityAjustesBinding
+import com.example.practicafinal.menu.Menu
 
 class Ajustes : AppCompatActivity() {
 
@@ -23,6 +24,20 @@ class Ajustes : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.ajustesBannerAtras.setOnClickListener {
+            finish()
+        }
+
+        binding.ajustesBannerLogo.setOnClickListener {
+            val intent = Intent(this, Menu::class.java)
+            startActivity(intent)
+        }
+
+        binding.ajustesBannerFotoPerfil.setOnClickListener {
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
         }
 
         binding.ajustesBotonGuardar.setOnClickListener {

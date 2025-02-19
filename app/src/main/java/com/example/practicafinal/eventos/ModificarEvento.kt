@@ -9,7 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.practicafinal.Menu
+import com.example.practicafinal.Perfil
+import com.example.practicafinal.menu.Menu
 import com.example.practicafinal.R
 import com.example.practicafinal.databinding.ActivityModificarEventoBinding
 
@@ -28,6 +29,20 @@ class ModificarEvento : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.modificarEventoBannerAtras.setOnClickListener {
+            finish()
+        }
+
+        binding.modificarEventoBannerLogo.setOnClickListener {
+            val intent = Intent(this, Menu::class.java)
+            startActivity(intent)
+        }
+
+        binding.modificarEventoBannerFotoPerfil.setOnClickListener {
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
         }
 
         binding.modificarEventoFoto.setOnClickListener {

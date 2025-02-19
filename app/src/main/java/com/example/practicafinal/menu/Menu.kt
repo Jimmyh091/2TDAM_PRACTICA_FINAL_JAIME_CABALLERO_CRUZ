@@ -1,4 +1,4 @@
-package com.example.practicafinal
+package com.example.practicafinal.menu
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
+import com.example.practicafinal.Perfil
+import com.example.practicafinal.R
 import com.example.practicafinal.cartas.CrearCarta
 import com.example.practicafinal.databinding.ActivityMenuBinding
 import com.example.practicafinal.eventos.CrearEvento
@@ -29,6 +31,20 @@ class Menu : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        binding.menuBannerAtras.setOnClickListener {
+            finish()
+        }
+
+        binding.menuBannerLogo.setOnClickListener {
+            val intent = Intent(this, Menu::class.java)
+            startActivity(intent)
+        }
+
+        binding.menuBannerFotoPerfil.setOnClickListener {
+            val intent = Intent(this, Perfil::class.java)
+            startActivity(intent)
         }
 
         val sp = getSharedPreferences("usuario", MODE_PRIVATE)
