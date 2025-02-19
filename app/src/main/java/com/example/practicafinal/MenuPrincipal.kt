@@ -55,7 +55,7 @@ class MenuPrincipal : AppCompatActivity() {
         }
 
 
-        var lisa = listOf(1,2)
+        var lisa = getResources().getStringArray(R.array.categorias)
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, lisa )
         binding.menuSpinnerCategoriaCartas.adapter = adapter
         binding.menuSpinnerCategoriaCartas.onItemSelectedListener = object :

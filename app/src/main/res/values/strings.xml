@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PracticaFinal</string>
+    <array name="categorias">
+        <string>Selecciona una categoria</string>
+        <string>Blanco</string>
+        <string>Negro</string>
+        <string>Azul</string>
+        <string>Rojo</string>
+        <string>Verde</string>
+    </array>
 </resources>

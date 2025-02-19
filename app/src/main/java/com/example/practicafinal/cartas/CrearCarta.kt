@@ -29,7 +29,7 @@ class CrearCarta : AppCompatActivity() {
             insets
         }
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listOf("Seleccionar", "Blanco", "Negro", "Azul", "Rojo", "Verde", "Amarillo"))
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listOf(resources.getStringArray(R.array.categorias)))
         binding.crearCartaSpinnerCategoria.adapter = adapter
 
         binding.crearCartaImagen.setOnClickListener{
