@@ -1,6 +1,8 @@
 package com.example.practicafinal.eventos
 
+import android.app.DatePickerDialog
 import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -33,6 +35,20 @@ class CrearEvento : AppCompatActivity() {
             /*
             COGER FOTO DEL MOVIL
             */
+        }
+
+        binding.crearEventoTietFecha.setOnClickListener {
+            val calendario = Calendar.getInstance()
+            val año = calendario.get(Calendar.YEAR)
+            val mes = calendario.get(Calendar.MONTH)
+            val día = calendario.get(Calendar.DAY_OF_MONTH)
+
+            val datePicker = DatePickerDialog(this, { _, year, month, dayOfMonth ->
+                val fechaSeleccionada = "$dayOfMonth/${month + 1}/$year"
+                binding.crearEventoTietFecha.setText(fechaSeleccionada)
+            }, año, mes, día)
+
+            datePicker.show()
         }
 
         binding.crearEventoBotonCrear.setOnClickListener {
