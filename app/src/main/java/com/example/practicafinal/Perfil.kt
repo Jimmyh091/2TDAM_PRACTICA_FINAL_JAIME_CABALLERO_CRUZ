@@ -24,7 +24,18 @@ class Perfil : AppCompatActivity() {
             insets
         }
 
+        val sp = getSharedPreferences("usuario", MODE_PRIVATE)
 
+        binding.perfilNombre.text = sp.getString("nombre", "")
+        binding.perfilCorreo.text = sp.getString("correo", "")
+        binding.perfilDinero.text = sp.getString("dinero", "")
+
+        binding.perfilBotonAniadirDinero.setOnClickListener {
+
+        }
+
+        binding.perfilRecyclerCartas
+        binding.perfilRecyclerEventos
 
     }
 }

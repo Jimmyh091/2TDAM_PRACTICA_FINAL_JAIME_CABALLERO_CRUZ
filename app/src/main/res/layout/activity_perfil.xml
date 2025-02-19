@@ -162,6 +162,16 @@
                 app:layout_constraintStart_toStartOf="@+id/perfil_correo"
                 app:layout_constraintTop_toBottomOf="@+id/perfil_textview_dinero" />
 
+            <Button
+                android:id="@+id/perfil_boton_aniadirDinero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+ Dinero"
+                app:layout_constraintBottom_toBottomOf="@+id/perfil_nombre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/perfil_foto"
+                app:layout_constraintTop_toTopOf="@+id/perfil_nombre" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
