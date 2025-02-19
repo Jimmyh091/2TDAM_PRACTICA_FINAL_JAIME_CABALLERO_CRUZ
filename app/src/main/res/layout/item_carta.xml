@@ -32,7 +32,7 @@
         android:id="@+id/itemCarta_boton_comprar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Comprar"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="@+id/itemCarta_foto"
         app:layout_constraintStart_toStartOf="@+id/itemCarta_foto"
