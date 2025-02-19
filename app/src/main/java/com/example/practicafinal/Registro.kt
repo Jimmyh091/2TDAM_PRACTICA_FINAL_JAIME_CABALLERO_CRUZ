@@ -67,7 +67,7 @@ class Registro : AppCompatActivity() {
 
                 actualizarShared(usuario)
 
-                val intent = Intent(this, MenuPrincipal::class.java)
+                val intent = Intent(this, Menu::class.java)
                 startActivity(intent)
 
             }else{

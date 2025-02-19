@@ -14,7 +14,7 @@ import com.example.practicafinal.cartas.CrearCarta
 import com.example.practicafinal.databinding.ActivityMenuBinding
 import com.example.practicafinal.eventos.CrearEvento
 
-class MenuPrincipal : AppCompatActivity() {
+class Menu : AppCompatActivity() {
 
     private lateinit var binding: ActivityMenuBinding
 

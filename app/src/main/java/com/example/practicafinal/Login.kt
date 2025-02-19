@@ -46,7 +46,7 @@ class Login : AppCompatActivity() {
 
                     actualizarShared(user)
 
-                    val intent = Intent(this, MenuPrincipal::class.java)
+                    val intent = Intent(this, Menu::class.java)
                     startActivity(intent)
 
                     break

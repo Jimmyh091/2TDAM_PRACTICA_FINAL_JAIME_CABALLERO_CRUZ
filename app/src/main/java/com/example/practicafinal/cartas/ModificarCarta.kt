@@ -8,7 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.practicafinal.MenuPrincipal
+import com.example.practicafinal.Menu
 import com.example.practicafinal.R
 import com.example.practicafinal.databinding.ActivityModificarCartaBinding
 
@@ -71,14 +71,14 @@ class ModificarCarta : AppCompatActivity() {
                 ACTUALIZAR CARTA A LA BASE DE DATOS
                 */
 
-                val intent = Intent(this, MenuPrincipal::class.java)
+                val intent = Intent(this, Menu::class.java)
                 startActivity(intent)
 
             }else{
                 Toast.makeText(this, "La carta no existe", Toast.LENGTH_SHORT).show()
             }
 
-            val intent = Intent(this, MenuPrincipal::class.java)
+            val intent = Intent(this, Menu::class.java)
             startActivity(intent)
         }
     }

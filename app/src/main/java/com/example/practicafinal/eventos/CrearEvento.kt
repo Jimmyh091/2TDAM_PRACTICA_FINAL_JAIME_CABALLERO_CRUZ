@@ -9,9 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.practicafinal.MenuPrincipal
+import com.example.practicafinal.Menu
 import com.example.practicafinal.R
-import com.example.practicafinal.cartas.Carta
 import com.example.practicafinal.databinding.ActivityCrearEventoBinding
 
 class CrearEvento : AppCompatActivity() {
@@ -83,14 +82,14 @@ class CrearEvento : AppCompatActivity() {
                 SUBIR EVENTO A LA BASE DE DATOS
                 */
 
-                val intent = Intent(this, MenuPrincipal::class.java)
+                val intent = Intent(this, Menu::class.java)
                 startActivity(intent)
 
             }else{
                 Toast.makeText(this, "Ya existe un evento con ese nombre o en esa fecha", Toast.LENGTH_LONG).show()
             }
 
-            val intent = Intent(this, MenuPrincipal::class.java)
+            val intent = Intent(this, Menu::class.java)
             startActivity(intent)
 
         }
