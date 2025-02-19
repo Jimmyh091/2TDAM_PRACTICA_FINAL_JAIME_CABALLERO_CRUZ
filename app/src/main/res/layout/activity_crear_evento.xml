@@ -7,115 +7,179 @@
     android:layout_height="match_parent"
     tools:context=".eventos.CrearEvento">
 
-    <TextView
-        android:id="@+id/crearEvento_titulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Crear evento"
-        android:textSize="30sp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/crearEvento_banner"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/rojoclaro"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/crearEvento_foto"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crearEvento_titulo"
-        android:src="@drawable/archivovacio" />
+        <ImageView
+            android:id="@+id/crearEvento_banner_atras"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:layout_margin="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/atras" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
+        <ImageView
+            android:id="@+id/crearEvento_banner_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="18dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/magic" />
+
+        <ImageView
+            android:id="@+id/crearEvento_banner_fotoPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/archivovacio" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crearEvento_foto"
-        app:cardElevation="5dp"
-        app:cardCornerRadius="20dp">
+        app:layout_constraintTop_toBottomOf="@+id/crearEvento_banner">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/crearEvento_til_nombre"
+            <TextView
+                android:id="@+id/crearEvento_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Crear evento"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/crearEvento_foto"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/archivovacio"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crearEvento_titulo" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crearEvento_cardview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crearEvento_foto">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/crearEvento_til_nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/crearEvento_tiet_nombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nombre" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/crearEvento_til_precio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintEnd_toStartOf="@id/crearEvento_til_aforo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/crearEvento_til_nombre">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/crearEvento_tiet_precio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Precio"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/crearEvento_til_aforo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/crearEvento_til_precio"
+                        app:layout_constraintTop_toBottomOf="@id/crearEvento_til_nombre">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/crearEvento_tiet_aforo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="aforo"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/crearEvento_til_fecha"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="5dp"
+                        app:flow_horizontalAlign="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/crearEvento_til_precio">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/crearEvento_tiet_fecha"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="fecha"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/crearEvento_tiet_nombre"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nombre" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/crearEvento_til_precio"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/crearEvento_til_nombre"
-                app:layout_constraintEnd_toStartOf="@id/crearEvento_til_aforo"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/crearEvento_tiet_precio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="Precio" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/crearEvento_til_aforo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                app:layout_constraintStart_toEndOf="@id/crearEvento_til_precio"
-                app:layout_constraintTop_toBottomOf="@id/crearEvento_til_nombre"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/crearEvento_tiet_aforo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="aforo" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/crearEvento_til_fecha"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:flow_horizontalAlign="center"
-                app:layout_constraintTop_toBottomOf="@id/crearEvento_til_precio"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="10dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/crearEvento_tiet_fecha"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="fecha" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="30dp"
+                app:layout_constraintTop_toBottomOf="@id/crearEvento_cardview"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+
+    </ScrollView>
+
 
     <Button
         android:id="@+id/crearEvento_boton_crear"

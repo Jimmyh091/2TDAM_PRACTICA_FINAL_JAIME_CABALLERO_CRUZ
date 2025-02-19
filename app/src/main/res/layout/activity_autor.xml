@@ -7,4 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".Autor">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/actividad_banner"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/rojoclaro"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/actividad_banner_atras"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:layout_margin="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/atras" />
+
+        <ImageView
+            android:id="@+id/actividad_banner_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="18dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/magic" />
+
+        <ImageView
+            android:id="@+id/actividad_banner_fotoPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/archivovacio" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
