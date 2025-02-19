@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cartas.CrearCarta">
+
+    <TextView
+        android:id="@+id/crearCarta_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear carta"
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/crearCarta_imagen"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/archivovacio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crearCarta_titulo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/crearCarta_til_titulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/crearCarta_imagen"
+        app:layout_constraintStart_toStartOf="@+id/crearCarta_imagen"
+        app:layout_constraintTop_toBottomOf="@+id/crearCarta_imagen">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/crearCarta_tiet_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Titulo" />
+
+        <Spinner
+            android:id="@+id/crearCarta_spinner_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/crearCarta_til_categoria"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/crearCarta_imagen"
+        app:layout_constraintStart_toStartOf="@+id/crearCarta_imagen"
+        app:layout_constraintTop_toBottomOf="@+id/crearCarta_til_titulo"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/crearCarta_til_descripcion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="@+id/crearCarta_imagen"
+        app:layout_constraintStart_toStartOf="@+id/crearCarta_imagen"
+        app:layout_constraintTop_toBottomOf="@+id/crearCarta_til_titulo">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/crearCarta_tiet_descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripción"
+            android:inputType="textMultiLine" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/creacrCarta_boton_crear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear carta"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
