@@ -53,44 +53,53 @@ class CrearEvento : AppCompatActivity() {
         binding.crearEventoBotonCrear.setOnClickListener {
 
             /* BD
-            COGER CARTAS
+            COGER EVENTOS
             */
 
             val listaEventos = listOf(Evento())
 
-            var valido = true
-
-            for (evento in listaEventos) {
-
-                if (evento.nombre == binding.crearEventoTietNombre.text.toString() || evento.fecha == binding.crearEventoTietFecha.text.toString()) {
-                    valido = false
-                    break
-                }
-            }
-
-            if (valido) {
-
-                val evento = Evento(
-                    binding.crearEventoTietNombre.text.toString(),
-                    binding.crearEventoTietDescripcion.text.toString(),
-                    binding.crearEventoTietFecha.text.toString(),
-                    binding.crearEventoTietPrecio.text.toString().toFloat(),
-                    binding.crearEventoTietAforo.text.toString().toInt(),
-                )
-
-                /* BD
-                SUBIR EVENTO A LA BASE DE DATOS
-                */
-
-                val intent = Intent(this, Menu::class.java)
-                startActivity(intent)
-
+            if (
+                binding.crearEventoTietNombre.text.toString().isEmpty() ||
+                binding.crearEventoTietDescripcion.text.toString().isEmpty() ||
+                binding.crearEventoTietFecha.text.toString().isEmpty() ||
+                binding.crearEventoTietAforo.text.toString().isEmpty() ||
+                binding.crearEventoTietPrecio.text.toString().isEmpty()
+            ){
+                Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
             }else{
-                Toast.makeText(this, "Ya existe un evento con ese nombre o en esa fecha", Toast.LENGTH_LONG).show()
-            }
 
-            val intent = Intent(this, Menu::class.java)
-            startActivity(intent)
+                var valido = true
+
+                for (evento in listaEventos) {
+
+                    if (evento.nombre == binding.crearEventoTietNombre.text.toString() || evento.fecha == binding.crearEventoTietFecha.text.toString()) {
+                        valido = false
+                        break
+                    }
+                }
+
+                if (valido) {
+
+                    val evento = Evento(
+                        binding.crearEventoTietNombre.text.toString(),
+                        binding.crearEventoTietDescripcion.text.toString(),
+                        binding.crearEventoTietFecha.text.toString(),
+                        binding.crearEventoTietPrecio.text.toString().toFloat(),
+                        binding.crearEventoTietAforo.text.toString().toInt(),
+                    )
+
+                    /* BD
+                    SUBIR EVENTO A LA BASE DE DATOS
+                    */
+
+                    val intent = Intent(this, Menu::class.java)
+                    startActivity(intent)
+
+                }else{
+                    Toast.makeText(this, "Ya existe un evento con ese nombre o en esa fecha", Toast.LENGTH_LONG).show()
+                }
+
+            }
 
         }
     }

@@ -46,40 +46,49 @@ class ModificarCarta : AppCompatActivity() {
 
             val listaCartas = listOf(Carta())
 
-            var valido = false
-
-            for (carta in listaCartas) {
-
-                if (carta.nombre == binding.modificarCartaTietTitulo.text.toString()) {
-                    valido = true
-                    break
-                }
-            }
-
-            if (valido) {
-
-                val carta = Carta(
-                    binding.modificarCartaTietTitulo.text.toString(),
-                    binding.modificarCartaTietDescripcion.text.toString(),
-                    binding.modificarCartaSpinnerCategoria.selectedItem.toString(),
-                    binding.modificarCartaTietPrecio.text.toString().toFloat(),
-                    null,
-                    binding.modificarCartaTietStock.text.toString().toInt(),
-                )
-
-                /* BD
-                ACTUALIZAR CARTA A LA BASE DE DATOS
-                */
-
-                val intent = Intent(this, Menu::class.java)
-                startActivity(intent)
-
+            if (
+                binding.modificarCartaTietTitulo.text.toString().isEmpty() ||
+                binding.modificarCartaSpinnerCategoria.selectedItem == "Selecciona una categoria" ||
+                binding.modificarCartaTietDescripcion.text.toString().isEmpty() ||
+                binding.modificarCartaTietPrecio.text.toString().isEmpty() ||
+                binding.modificarCartaTietStock.text.toString().isEmpty()
+            ) {
+                Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
             }else{
-                Toast.makeText(this, "La carta no existe", Toast.LENGTH_SHORT).show()
-            }
 
-            val intent = Intent(this, Menu::class.java)
-            startActivity(intent)
+                var valido = false
+
+                for (carta in listaCartas) {
+
+                    if (carta.nombre == binding.modificarCartaTietTitulo.text.toString()) {
+                        valido = true
+                        break
+                    }
+                }
+
+                if (valido) {
+
+                    val carta = Carta(
+                        binding.modificarCartaTietTitulo.text.toString(),
+                        binding.modificarCartaTietDescripcion.text.toString(),
+                        binding.modificarCartaSpinnerCategoria.selectedItem.toString(),
+                        binding.modificarCartaTietPrecio.text.toString().toFloat(),
+                        null,
+                        binding.modificarCartaTietStock.text.toString().toInt(),
+                    )
+
+                    /* BD
+                    ACTUALIZAR CARTA A LA BASE DE DATOS
+                    */
+
+                    val intent = Intent(this, Menu::class.java)
+                    startActivity(intent)
+
+                }else{
+                    Toast.makeText(this, "La carta no existe", Toast.LENGTH_SHORT).show()
+                }
+
+            }
         }
     }
 }

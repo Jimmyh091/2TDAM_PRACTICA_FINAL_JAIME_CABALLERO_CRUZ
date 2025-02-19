@@ -1,5 +1,6 @@
 package com.example.practicafinal.eventos
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -42,6 +43,33 @@ class VerEvento : AppCompatActivity() {
             /*
             COGER IMAGEN DEL MOVIL
             */
+        }
+
+        binding.verEventoBotonParticipar.setOnClickListener {
+
+            var evento = Evento(
+                binding.verEventoNombre.text.toString(),
+                binding.verEventoDescripcion.text.toString(),
+                binding.verEventoFecha.text.toString(),
+                binding.verEventoPrecio.text.toString().toFloat(),
+                binding.verEventoAforo.text.toString().toInt(),
+            )
+
+            /* BD
+            SUBIR EVENTO
+            */
+        }
+
+        binding.verEventoBorrar.setOnClickListener {
+            /*
+            BORRAR EVENTO
+            */
+        }
+
+        binding.verEventoEditar.setOnClickListener {
+            val intent = Intent(this, ModificarEvento::class.java)
+            intent.putExtra("idEvento", idEvento)
+            startActivity(intent)
         }
         
     }

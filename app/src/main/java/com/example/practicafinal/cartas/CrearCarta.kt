@@ -48,38 +48,45 @@ class CrearCarta : AppCompatActivity() {
 
             var valido = true
 
-            for (carta in listaCartas) {
+            if (
+                binding.crearCartaTietTitulo.text.toString().isEmpty() ||
+                binding.crearCartaTietDescripcion.text.toString().isEmpty() ||
+                binding.crearCartaTietPrecio.text.toString().isEmpty() ||
+                binding.crearCartaTietStock.text.toString().isEmpty()
+            ){
+                Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+            }else{
 
-                if (carta.nombre == binding.crearCartaTietTitulo.text.toString()) {
-                    valido = false
-                    break
+                for (carta in listaCartas) {
+
+                    if (carta.nombre == binding.crearCartaTietTitulo.text.toString()) {
+                        valido = false
+                        break
+                    }
+                }
+
+                if (valido) {
+
+                    val carta = Carta(
+                        binding.crearCartaTietTitulo.text.toString(),
+                        binding.crearCartaTietDescripcion.text.toString(),
+                        binding.crearCartaSpinnerCategoria.selectedItem.toString(),
+                        binding.crearCartaTietPrecio.text.toString().toFloat(),
+                        null,
+                        binding.crearCartaTietStock.text.toString().toInt(),
+                    )
+
+                    /* BD
+                    SUBIR CARTA A LA BASE DE DATOS
+                    */
+
+                    val intent = Intent(this, Menu::class.java)
+                    startActivity(intent)
+
+                }else{
+                    Toast.makeText(this, "Ya existe una carta con ese nombre", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            if (valido) {
-
-                val carta = Carta(
-                    binding.crearCartaTietTitulo.text.toString(),
-                    binding.crearCartaTietDescripcion.text.toString(),
-                    binding.crearCartaSpinnerCategoria.selectedItem.toString(),
-                    binding.crearCartaTietPrecio.text.toString().toFloat(),
-                    null,
-                    binding.crearCartaTietStock.text.toString().toInt(),
-                )
-
-                /* BD
-                SUBIR CARTA A LA BASE DE DATOS
-                */
-
-                val intent = Intent(this, Menu::class.java)
-                startActivity(intent)
-
-            }else{
-                Toast.makeText(this, "Ya existe una carta con ese nombre", Toast.LENGTH_SHORT).show()
-            }
-
-            val intent = Intent(this, Menu::class.java)
-            startActivity(intent)
         }
     }
 }

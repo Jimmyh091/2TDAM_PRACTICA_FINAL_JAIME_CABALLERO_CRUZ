@@ -53,7 +53,6 @@ class Menu : AppCompatActivity() {
             // filtra el recycler por nombre
         }
 
-
         var lisa = getResources().getStringArray(R.array.categorias)
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, lisa )
         binding.menuSpinnerCategoriaCartas.adapter = adapter

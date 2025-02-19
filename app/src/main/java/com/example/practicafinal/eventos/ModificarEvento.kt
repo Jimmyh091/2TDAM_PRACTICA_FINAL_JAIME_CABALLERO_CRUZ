@@ -58,39 +58,51 @@ class ModificarEvento : AppCompatActivity() {
 
             val listaEventos = listOf(Evento())
 
-            var valido = true
+            if (
+                binding.modificarEventoTietNombre.text.toString().isEmpty() ||
+                binding.modificarEventoTietDescripcion.text.toString().isEmpty() ||
+                binding.modificarEventoTietFecha.text.toString().isEmpty() ||
+                binding.modificarEventoTietPrecio.text.toString().isEmpty() ||
+                binding.modificarEventoTietAforo.text.toString().isEmpty()
+            ) {
+                Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_LONG).show()
+            }else{
 
-            for (evento in listaEventos) {
+                var valido = true
 
-                if (evento.nombre == binding.modificarEventoTietNombre.text.toString() || evento.fecha == binding.modificarEventoTietFecha.text.toString()) {
-                    valido = false
-                    break
+                for (evento in listaEventos) {
+
+                    if (evento.nombre == binding.modificarEventoTietNombre.text.toString() || evento.fecha == binding.modificarEventoTietFecha.text.toString()) {
+                        valido = false
+                        break
+                    }
                 }
-            }
 
-            if (valido) {
+                if (valido) {
 
-                val evento = Evento(
-                    binding.modificarEventoTietNombre.text.toString(),
-                    binding.modificarEventoTietDescripcion.text.toString(),
-                    binding.modificarEventoTietFecha.text.toString(),
-                    binding.modificarEventoTietPrecio.text.toString().toFloat(),
-                    binding.modificarEventoTietAforo.text.toString().toInt(),
-                )
+                    val evento = Evento(
+                        binding.modificarEventoTietNombre.text.toString(),
+                        binding.modificarEventoTietDescripcion.text.toString(),
+                        binding.modificarEventoTietFecha.text.toString(),
+                        binding.modificarEventoTietPrecio.text.toString().toFloat(),
+                        binding.modificarEventoTietAforo.text.toString().toInt(),
+                    )
 
-                /* BD
-                SUBIR EVENTO A LA BASE DE DATOS
-                */
+                    /* BD
+                    SUBIR EVENTO A LA BASE DE DATOS
+                    */
+
+                    val intent = Intent(this, Menu::class.java)
+                    startActivity(intent)
+
+                }else{
+                    Toast.makeText(this, "Ya existe un evento con ese nombre o en esa fecha", Toast.LENGTH_LONG).show()
+                }
 
                 val intent = Intent(this, Menu::class.java)
                 startActivity(intent)
 
-            }else{
-                Toast.makeText(this, "Ya existe un evento con ese nombre o en esa fecha", Toast.LENGTH_LONG).show()
             }
-
-            val intent = Intent(this, Menu::class.java)
-            startActivity(intent)
 
         }
         

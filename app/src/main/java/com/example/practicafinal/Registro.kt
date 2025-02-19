@@ -39,39 +39,50 @@ class Registro : AppCompatActivity() {
             */
             var listaUser = listOf(Usuario())
 
-            var valido = true
-
-            for (user in listaUser){
-                if (usuario == user.nombre) {
-
-                    valido = false
-                    break
-                }
-            }
-
-            if (valido){
-
-                var usuario = Usuario(
-                    admin = false,
-                    nombre = usuario,
-                    correo = correo,
-                    contrasenia = contrasenia,
-                    dinero = 0f
-                )
-
-                /* BD
-                SUBIR USUARIO A BASE DE DATOS
-                */
-
-                Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-
-                actualizarShared(usuario)
-
-                val intent = Intent(this, Menu::class.java)
-                startActivity(intent)
-
+            if (
+                usuario.isEmpty() ||
+                correo.isEmpty() ||
+                contrasenia.isEmpty() ||
+                contrasenia2.isEmpty()
+            ){
+                Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
             }else{
-                Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_SHORT).show()
+
+                var valido = true
+
+                for (user in listaUser){
+                    if (usuario == user.nombre) {
+
+                        valido = false
+                        break
+                    }
+                }
+
+                if (valido){
+
+                    var usuario = Usuario(
+                        admin = false,
+                        nombre = usuario,
+                        correo = correo,
+                        contrasenia = contrasenia,
+                        dinero = 0f
+                    )
+
+                    /* BD
+                    SUBIR USUARIO A BASE DE DATOS
+                    */
+
+                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+
+                    actualizarShared(usuario)
+
+                    val intent = Intent(this, Menu::class.java)
+                    startActivity(intent)
+
+                }else{
+                    Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_SHORT).show()
+                }
+
             }
 
         }

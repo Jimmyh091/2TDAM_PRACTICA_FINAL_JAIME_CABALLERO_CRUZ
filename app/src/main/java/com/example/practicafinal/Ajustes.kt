@@ -37,12 +37,16 @@ class Ajustes : AppCompatActivity() {
 
     }
 
-    fun modoOscuro(modo : Boolean) {
+    fun modoOscuro(modoOscuro : Boolean) {
         var usuarioSharedPreferences = getSharedPreferences("ajustes", MODE_PRIVATE)
 
         var editor = usuarioSharedPreferences.edit()
         editor.putBoolean("modoOscuro", true)
         editor.apply()
+
+        /* TD
+        CAMBIAR EL TEMA A MODO OSCURO
+        */
     }
 
     fun divisa(divisa : String){

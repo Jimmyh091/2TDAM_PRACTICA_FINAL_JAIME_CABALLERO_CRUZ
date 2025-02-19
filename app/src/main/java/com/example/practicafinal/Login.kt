@@ -37,25 +37,34 @@ class Login : AppCompatActivity() {
             */
             var listaUser = listOf(Usuario())
 
-            var accedido = false
+            if (
+                usuario.isEmpty() ||
+                contrasenia.isEmpty()
+            ){
+                Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+            }else{
 
-            for (user in listaUser){
-                if (usuario == user.nombre && contrasenia == user.contrasenia) {
+                var accedido = false
 
-                    accedido = true
+                for (user in listaUser){
+                    if (usuario == user.nombre && contrasenia == user.contrasenia) {
 
-                    actualizarShared(user)
+                        accedido = true
 
-                    val intent = Intent(this, Menu::class.java)
-                    startActivity(intent)
+                        actualizarShared(user)
 
-                    break
+                        val intent = Intent(this, Menu::class.java)
+                        startActivity(intent)
+
+                        break
+                    }
+
                 }
 
-            }
+                if (!accedido){
+                    Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+                }
 
-            if (!accedido){
-                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             }
 
         }
