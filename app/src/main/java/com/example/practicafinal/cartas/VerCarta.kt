@@ -76,7 +76,7 @@ class VerCarta : AppCompatActivity() {
 
             var sp = getSharedPreferences("usuario", MODE_PRIVATE)
 
-            val pedido = Pedido(sp.getString("nombre", "")!!, idCarta)
+            val pedido = Pedido(usuario = sp.getString("nombre", "")!!, carta = idCarta)
 
             /* BD
             SUBIR PEDIDO

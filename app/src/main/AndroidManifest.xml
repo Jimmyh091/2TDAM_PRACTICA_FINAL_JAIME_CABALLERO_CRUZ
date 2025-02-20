@@ -14,17 +14,15 @@
         tools:targetApi="31">
         <activity
             android:name=".Test"
+            android:exported="false"/>
+        <activity
+            android:name=".Entrada"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".Entrada"
-            android:exported="false">
         </activity>
         <activity
             android:name=".pedidos.VerPedidos"
@@ -64,9 +62,7 @@
             android:exported="false" />
         <activity
             android:name=".menu.Menu"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"/>
     </application>
 
 </manifest>

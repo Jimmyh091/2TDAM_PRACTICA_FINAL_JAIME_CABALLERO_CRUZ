@@ -1,11 +1,17 @@
 package com.example.practicafinal
 
 //import com.google.firebase.database.DatabaseReference
+import android.util.Log
 import com.example.practicafinal.cartas.Carta
 import com.example.practicafinal.eventos.Evento
 import com.example.practicafinal.pedidos.Pedido
+import com.google.android.gms.tasks.Task
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class Util {
@@ -25,7 +31,8 @@ class Util {
         }
 
         fun subirUsuario(db_ref: DatabaseReference, usuario: Usuario) {
-            db_ref.child("tienda").child("usuarios").setValue(usuario)
+            val a = db_ref.child("tienda").child("usuarios").push().key
+            db_ref.child("tienda").child("usuarios").child(a!!).setValue(usuario)
         }
 
         fun borrarUsuario(db_ref: DatabaseReference, nombre: String) {
@@ -36,13 +43,27 @@ class Util {
             db_ref.child("tienda").child("usuarios").child(nombre).setValue(usuario)
         }
 
-        fun obtenerUsuarios(db_ref: DatabaseReference): List<Usuario> {
+        /*fun obtenerUsuarios(db_ref: DatabaseReference): List<Usuario> {
             var usuarios = listOf<Usuario>()
-            db_ref.child("tienda").child("usuarios").get().addOnSuccessListener {
-                usuarios = it.children.map { it.getValue(Usuario::class.java)!! }
-            }
-            return usuarios
-        }
+
+            var a : Task<DataSnapshot>
+           GlobalScope.launch(Dispatchers.IO) {
+               a = db_ref.child("tienda").child("usuarios").get().addOnSuccessListener {
+                   for (DataSnapshot in it.children) {
+                       val usuario = DataSnapshot.getValue(Usuario::class.java)
+                       if (usuario != null) {
+                           usuarios += usuario
+                       }
+                       //Log.v("oas", "${DataSnapshot.value}")
+                   }
+               }
+               while(!a.isComplete){
+                   Log.v("oas", "esperando")
+               }
+           }
+
+
+        }*/
 
 
         // CARTAS //
@@ -109,12 +130,15 @@ class Util {
                     callback(null)
                 }
         }
+
         fun subirPedido(db_ref: DatabaseReference, pedido: Pedido) {
-            db_ref.child("tienda").child("pedidos").child(pedido.id).setValue(pedido)
+            db_ref.child("tienda").child("pedidos").setValue(pedido)
         }
+
         fun borrarPedido(db_ref: DatabaseReference, idPedido: String) {
             db_ref.child("tienda").child("pedidos").child(idPedido).removeValue()
         }
+
         fun modificarPedido(db_ref: DatabaseReference, idPedido: String, pedido: Pedido) {
             db_ref.child("tienda").child("pedidos").child(idPedido).setValue(pedido)
         }

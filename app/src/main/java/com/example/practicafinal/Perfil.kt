@@ -6,10 +6,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.practicafinal.cartas.Carta
+import com.example.practicafinal.cartas.CartaAdapter
+import com.example.practicafinal.cartas.onCartaClickedListener
 import com.example.practicafinal.databinding.ActivityPerfilBinding
 import com.example.practicafinal.menu.Menu
 
-class Perfil : AppCompatActivity() {
+class Perfil : AppCompatActivity(), onCartaClickedListener {
 
     private lateinit var binding: ActivityPerfilBinding
 
@@ -77,8 +81,17 @@ class Perfil : AppCompatActivity() {
             */
         }
 
-        binding.perfilRecyclerCartas
-        binding.perfilRecyclerEventos
+        var listaCartas = listOf(Carta())
 
+        binding.perfilRecyclerCartas.layoutManager = LinearLayoutManager(this)
+        binding.perfilRecyclerCartas.adapter = CartaAdapter(listaCartas, this)
+
+        binding.perfilRecyclerEventos.layoutManager = LinearLayoutManager(this)
+        binding.perfilRecyclerEventos.adapter = CartaAdapter(listaCartas, this)
+
+    }
+
+    override fun onCartaClicked(carta: Carta) {
+        TODO("Not yet implemented")
     }
 }

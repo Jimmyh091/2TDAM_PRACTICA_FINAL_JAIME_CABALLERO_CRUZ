@@ -101,6 +101,6 @@ class Menu : AppCompatActivity(), onCartaClickedListener {
     }
 
     override fun onCartaClicked(carta: Carta) {
-        TODO("Not yet implemented")
+        var intent = Intent(this, Carta::class.java)
     }
 }

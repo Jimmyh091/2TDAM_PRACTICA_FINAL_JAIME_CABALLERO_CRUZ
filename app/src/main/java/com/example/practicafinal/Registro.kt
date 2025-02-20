@@ -41,14 +41,9 @@ class Registro : AppCompatActivity() {
             val contrasenia2 = binding.registroTietRepetirContrasenia.text.toString()
 
             db_ref = FirebaseDatabase.getInstance().getReference()
-            var listaUser = Util.obtenerUsuarios(db_ref)
+            var listaUser = listOf(Usuario())//Util.obtenerUsuarios(db_ref)
 
-            Log.v("yo", listaUser.toString())
-
-            Log.v("yo", usuario)
-            Log.v("yo", correo)
-            Log.v("yo", contrasenia)
-            Log.v("yo", contrasenia2)
+            Log.v("lista", listaUser.toString())
 
             if (
                 usuario.isEmpty() ||
@@ -77,8 +72,6 @@ class Registro : AppCompatActivity() {
 
                 if (valido){
 
-                    Log.v("yo", "valido")
-
                     var usuario = Usuario(
                         admin = false,
                         nombre = usuario,
@@ -86,14 +79,13 @@ class Registro : AppCompatActivity() {
                         contrasenia = contrasenia,
                         dinero = 0f
                     )
-
                     Util.subirUsuario(db_ref, usuario)
 
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
 
                     actualizarShared(usuario)
 
-                    val intent = Intent(this, Menu::class.java)
+                    val intent = Intent(this, com.example.practicafinal.menu.Menu::class.java)
                     startActivity(intent)
 
                 }else{
@@ -159,4 +151,5 @@ class Registro : AppCompatActivity() {
 
         editor.apply()
     }
+
 }
