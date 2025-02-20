@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import com.example.practicafinal.Perfil
 import com.example.practicafinal.R
+import com.example.practicafinal.cartas.Carta
 import com.example.practicafinal.cartas.CrearCarta
 import com.example.practicafinal.databinding.ActivityMenuBinding
 import com.example.practicafinal.eventos.CrearEvento
@@ -81,6 +82,17 @@ class Menu : AppCompatActivity() {
                 // otnto
             }
         }
+
+        val cartas = listOf(
+            Carta(),
+            Carta(),
+            Carta(),
+            Carta(),
+            Carta(),
+            Carta()
+        )
+
+        binding.menuRecyclerCartas.adapter = CartaAdapter(cartas)
 
     }
 }
