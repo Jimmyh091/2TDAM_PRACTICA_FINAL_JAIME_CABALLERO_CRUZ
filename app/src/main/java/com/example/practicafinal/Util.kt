@@ -19,16 +19,26 @@ class Util {
 
         // USUARIO //
 
-        fun obtenerUsuario(db_ref : DatabaseReference, nombre : String, callback : (Usuario?) -> Unit) {
-            db_ref.child("tienda").child("usuarios").child(nombre).get()
+        fun obtenerUsuario(db_ref: DatabaseReference, nombre: String, callback: (Usuario?) -> Unit) {
+            db_ref.child("tienda").child("usuarios").get()
                 .addOnSuccessListener { snapshot ->
-                    val usuario = snapshot.getValue(Usuario::class.java)
-                    callback(usuario)
+                    var usuarioEncontrado: Usuario? = null
+
+                    for (usuarioSnapshot in snapshot.children) {
+                        val usuario = usuarioSnapshot.getValue(Usuario::class.java)
+                        if (usuario != null && usuario.nombre == nombre) {
+                            usuarioEncontrado = usuario
+                            break
+                        }
+                    }
+
+                    callback(usuarioEncontrado)
                 }
                 .addOnFailureListener {
                     callback(null)
                 }
         }
+
 
         fun subirUsuario(db_ref: DatabaseReference, usuario: Usuario) {
             val a = db_ref.child("tienda").child("usuarios").push().key
