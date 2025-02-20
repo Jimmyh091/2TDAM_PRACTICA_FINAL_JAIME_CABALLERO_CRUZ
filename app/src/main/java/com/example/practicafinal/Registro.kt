@@ -2,6 +2,7 @@ package com.example.practicafinal
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -9,10 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.practicafinal.databinding.ActivityRegistroBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class Registro : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistroBinding
+    private lateinit var db_ref: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -34,10 +38,10 @@ class Registro : AppCompatActivity() {
             val contrasenia = binding.registroTietContrasenia.text.toString()
             val contrasenia2 = binding.registroTietRepetirContrasenia.text.toString()
 
-            /* BD
-            PEDIR USUARIOS BASE DE DATOS
-            */
-            var listaUser = listOf(Usuario())
+            db_ref = FirebaseDatabase.getInstance().getReference()
+            var listaUser = Util.obtenerUsuarios(db_ref)
+
+            Log.v("yo", listaUser.toString())
 
             if (
                 usuario.isEmpty() ||
