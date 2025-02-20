@@ -13,6 +13,7 @@ import androidx.core.widget.addTextChangedListener
 import com.example.practicafinal.Perfil
 import com.example.practicafinal.R
 import com.example.practicafinal.cartas.Carta
+import com.example.practicafinal.cartas.CartaAdapter
 import com.example.practicafinal.cartas.CrearCarta
 import com.example.practicafinal.databinding.ActivityMenuBinding
 import com.example.practicafinal.eventos.CrearEvento

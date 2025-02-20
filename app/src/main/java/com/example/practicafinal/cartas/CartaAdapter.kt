@@ -1,10 +1,9 @@
-package com.example.practicafinal.menu
+package com.example.practicafinal.cartas
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafinal.R
-import com.example.practicafinal.cartas.Carta
 
 class CartaAdapter(private val cartas: List<Carta>) : RecyclerView.Adapter<CartaViewHolder>() {
 
