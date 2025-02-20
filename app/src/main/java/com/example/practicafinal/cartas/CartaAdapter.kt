@@ -21,7 +21,7 @@ class CartaAdapter(private val cartas: List<Carta>, private val listener: onCart
         holder.itemView.setOnClickListener {
 
             var intent = Intent(holder.itemView.context, VerCarta::class.java)
-            intent.putExtra("carta", cartas[position])
+            intent.putExtra("carta", cartas[position].nombre)
             holder.itemView.context.startActivity(intent)
 
             listener.onCartaClicked(cartas[position])

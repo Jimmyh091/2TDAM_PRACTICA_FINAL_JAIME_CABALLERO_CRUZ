@@ -16,10 +16,11 @@ import com.example.practicafinal.R
 import com.example.practicafinal.cartas.Carta
 import com.example.practicafinal.cartas.CartaAdapter
 import com.example.practicafinal.cartas.CrearCarta
+import com.example.practicafinal.cartas.onCartaClickedListener
 import com.example.practicafinal.databinding.ActivityMenuBinding
 import com.example.practicafinal.eventos.CrearEvento
 
-class Menu : AppCompatActivity() {
+class Menu : AppCompatActivity(), onCartaClickedListener {
 
     private lateinit var binding: ActivityMenuBinding
 
@@ -95,7 +96,11 @@ class Menu : AppCompatActivity() {
         )
 
         binding.menuRecyclerCartas.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.menuRecyclerCartas.adapter = CartaAdapter(cartas)
+        binding.menuRecyclerCartas.adapter = CartaAdapter(cartas, this)
 
+    }
+
+    override fun onCartaClicked(carta: Carta) {
+        TODO("Not yet implemented")
     }
 }
