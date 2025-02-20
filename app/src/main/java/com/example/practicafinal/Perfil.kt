@@ -48,7 +48,7 @@ class Perfil : AppCompatActivity(), onCartaClickedListener {
 
         binding.perfilNombre.text = sp.getString("nombre", "")
         binding.perfilCorreo.text = sp.getString("correo", "")
-        binding.perfilDinero.text = sp.getString("dinero", "")
+        binding.perfilDinero.text = sp.getFloat("dinero", 0f).toString()
 
         binding.perfilBotonAniadirDinero.setOnClickListener {
 

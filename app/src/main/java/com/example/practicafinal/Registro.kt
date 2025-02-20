@@ -70,15 +70,26 @@ class Registro : AppCompatActivity() {
                     }
                 }
 
-                if (valido){
+                var usuario = Usuario(
+                    admin = false,
+                    nombre = usuario,
+                    correo = correo,
+                    contrasenia = contrasenia,
+                    dinero = 0f
+                )
 
-                    var usuario = Usuario(
-                        admin = false,
-                        nombre = usuario,
-                        correo = correo,
-                        contrasenia = contrasenia,
-                        dinero = 0f
-                    )
+                obtenerUsuarios(db_ref) { listaUsuarios ->
+                    if (listaUsuarios.any { it.nombre == usuario.nombre }) {
+                        Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Util.subirUsuario(db_ref, usuario)
+                        Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                /*if (valido){
+
+
                     Util.subirUsuario(db_ref, usuario)
 
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
@@ -90,7 +101,7 @@ class Registro : AppCompatActivity() {
 
                 }else{
                     Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_SHORT).show()
-                }
+                }*/
 
             }
 
@@ -125,7 +136,7 @@ class Registro : AppCompatActivity() {
 
     fun validaUsuario(usuario: String) : Boolean{
 
-        val listaUser = Util.obtenerUsuarios(db_ref)
+        val listaUser = listOf(Usuario())// Util.obtenerUsuarios(db_ref)
 
         for (user in listaUser) {
             if (usuario == user.nombre) {
@@ -150,6 +161,24 @@ class Registro : AppCompatActivity() {
         editor.putString("foto", usuario.imagen)
 
         editor.apply()
+    }
+
+    fun obtenerUsuarios(db_ref: DatabaseReference, callback: (List<Usuario>) -> Unit) {
+        db_ref.child("tienda").child("usuarios").get().addOnSuccessListener { snapshot ->
+            val usuarios = snapshot.children.mapNotNull { it.getValue(Usuario::class.java) }
+            callback(usuarios) // Devuelve la lista al callback
+        }
+    }
+
+    fun registrarUsuario(db_ref: DatabaseReference, nuevoUsuario: Usuario) {
+        obtenerUsuarios(db_ref) { listaUsuarios ->
+            if (listaUsuarios.any { it.nombre == nuevoUsuario.nombre }) {
+                println("El usuario ya existe, elige otro nombre")
+            } else {
+                db_ref.child("tienda").child("usuarios").child(nuevoUsuario.nombre).setValue(nuevoUsuario)
+                println("Usuario registrado correctamente")
+            }
+        }
     }
 
 }
