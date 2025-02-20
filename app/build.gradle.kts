@@ -50,29 +50,23 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.9.0"))
 
-    implementation("com.google.firebase:firebase-storage")
-
-/*
     //DataStore
     implementation ("androidx.datastore:datastore-preferences:1.1.2")
 
     //Firebase
-    [
     implementation ("com.google.firebase:firebase-database:20.0.2")
     implementation ("com.google.firebase:firebase-core:20.0.0")
-    ] error
-
     implementation ("com.google.firebase:firebase-storage:20.0.0")
     implementation ("com.google.firebase:firebase-auth:21.0.1")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     implementation ("com.google.firebase:firebase-analytics:20.0.2")
     implementation ("com.google.android.gms:play-services-auth:20.1.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.1")
-*/
 
-    // implementation(platform("com.google.firebase:firebase-bom:33.9.0"))
-    // implementation("com.google.firebase:firebase-analytics") no lo quiero verdad
+    //AppWriteStorage
+    implementation("io.appwrite:sdk-for-kotlin:5.0.1")
+
+    //Serializable
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
 }
