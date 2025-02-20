@@ -33,6 +33,8 @@ class Registro : AppCompatActivity() {
 
         binding.registroBotonRegistro.setOnClickListener {
 
+            Log.v("yo", "registro")
+
             val usuario = binding.registroTietUsuario.text.toString()
             val correo = binding.registroTietCorreo.text.toString()
             val contrasenia = binding.registroTietContrasenia.text.toString()
@@ -43,6 +45,11 @@ class Registro : AppCompatActivity() {
 
             Log.v("yo", listaUser.toString())
 
+            Log.v("yo", usuario)
+            Log.v("yo", correo)
+            Log.v("yo", contrasenia)
+            Log.v("yo", contrasenia2)
+
             if (
                 usuario.isEmpty() ||
                 correo.isEmpty() ||
@@ -50,6 +57,12 @@ class Registro : AppCompatActivity() {
                 contrasenia2.isEmpty()
             ){
                 Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+            }else if (!validaContrasenia(binding.registroTietContrasenia.text.toString(), binding.registroTietRepetirContrasenia.text.toString())){
+
+            }else if (!validaCorreo(binding.registroTietCorreo.text.toString())){
+
+            }else if (!validaUsuario(binding.registroTietUsuario.text.toString())){
+
             }else{
 
                 var valido = true
@@ -64,6 +77,8 @@ class Registro : AppCompatActivity() {
 
                 if (valido){
 
+                    Log.v("yo", "valido")
+
                     var usuario = Usuario(
                         admin = false,
                         nombre = usuario,
@@ -72,9 +87,7 @@ class Registro : AppCompatActivity() {
                         dinero = 0f
                     )
 
-                    /* BD
-                    SUBIR USUARIO A BASE DE DATOS
-                    */
+                    Util.subirUsuario(db_ref, usuario)
 
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
 
@@ -93,6 +106,43 @@ class Registro : AppCompatActivity() {
 
     }
 
+    fun validaContrasenia(contrasenia: String, contrasenia2: String) : Boolean{
+
+        if (contrasenia != contrasenia2){
+            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+            return false
+        }else if (contrasenia.length < 6){
+            Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
+            return false
+        }else{
+            return true
+        }
+
+    }
+
+    fun validaCorreo(correo: String) : Boolean{
+
+        if (!correo.contains("@")){
+            Toast.makeText(this, "El correo no es válido", Toast.LENGTH_SHORT).show()
+            return false
+        }else{
+            return true
+        }
+
+    }
+
+    fun validaUsuario(usuario: String) : Boolean{
+
+        val listaUser = Util.obtenerUsuarios(db_ref)
+
+        for (user in listaUser) {
+            if (usuario == user.nombre) {
+                Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_SHORT).show()
+                return false
+            }
+        }
+        return true
+    }
 
     fun actualizarShared(usuario: Usuario){
         var usuarioSharedPreferences = getSharedPreferences("usuario", MODE_PRIVATE)
