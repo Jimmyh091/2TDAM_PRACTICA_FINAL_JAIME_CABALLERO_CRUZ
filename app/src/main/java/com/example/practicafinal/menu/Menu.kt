@@ -9,18 +9,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practicafinal.Perfil
 import com.example.practicafinal.R
 import com.example.practicafinal.cartas.Carta
-import com.example.practicafinal.cartas.CartaAdapter
 import com.example.practicafinal.cartas.CrearCarta
-import com.example.practicafinal.cartas.onCartaClickedListener
 import com.example.practicafinal.databinding.ActivityMenuBinding
 import com.example.practicafinal.eventos.CrearEvento
+import com.example.practicafinal.eventos.Evento
+import com.google.firebase.database.DatabaseReference
 
-class Menu : AppCompatActivity(), onCartaClickedListener {
+class Menu : AppCompatActivity(), onCartaClickedListener, onEventoClickedListener {
 
     private lateinit var binding: ActivityMenuBinding
 
@@ -55,7 +56,10 @@ class Menu : AppCompatActivity(), onCartaClickedListener {
 
         if (!sp.getBoolean("admin", true)){
             binding.menuBotonAniadirCarta.isEnabled = false
+            binding.menuBotonAniadirCarta.isVisible = false
+
             binding.menuBotonAniadirEvento.isEnabled = false
+            binding.menuBotonAniadirEvento.isVisible = false
         }
 
         binding.menuBotonAniadirCarta.setOnClickListener {
@@ -95,12 +99,68 @@ class Menu : AppCompatActivity(), onCartaClickedListener {
             Carta()
         )
 
+        val eventos = listOf(
+            Evento(),
+            Evento(),
+            Evento(),
+            Evento(),
+            Evento()
+        )
+
         binding.menuRecyclerCartas.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.menuRecyclerCartas.adapter = CartaAdapter(cartas, this)
 
+        binding.menuRecyclerEventos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.menuRecyclerEventos.adapter = EventoAdapter(eventos, this)
     }
 
     override fun onCartaClicked(carta: Carta) {
         var intent = Intent(this, Carta::class.java)
+        intent.putExtra("carta", carta.nombre)
+        startActivity(intent)
     }
+
+    override fun onEventoClicked(evento: Evento) {
+        var intent = Intent(this, Evento::class.java)
+        intent.putExtra("carta", evento.nombre)
+        startActivity(intent)
+    }
+
+    fun obtenerCartas(db_ref: DatabaseReference, callback: (List<Carta>?) -> Unit) {
+        db_ref.child("tienda").child("cartas").get()
+            .addOnSuccessListener { snapshot ->
+                // Comprobar si existen cartas en la base de datos
+                if (snapshot.exists()) {
+                    // Mapear las cartas y convertirlas en objetos Carta
+                    val cartas = snapshot.children.mapNotNull { it.getValue(Carta::class.java) }
+                    callback(cartas)  // Llamar al callback con la lista de cartas
+                } else {
+                    callback(null)  // No se encontraron cartas
+                }
+            }
+            .addOnFailureListener { exception ->
+                // En caso de error
+                callback(null)
+            }
+    }
+
+    fun obtenerEventos(db_ref: DatabaseReference, callback: (List<Evento>?) -> Unit) {
+        db_ref.child("tienda").child("eventos").get()
+            .addOnSuccessListener { snapshot ->
+                // Verifica si existen eventos en la base de datos
+                if (snapshot.exists()) {
+                    // Mapea los eventos y los convierte en objetos Evento
+                    val eventos = snapshot.children.mapNotNull { it.getValue(Evento::class.java) }
+                    callback(eventos)  // Llama al callback con la lista de eventos
+                } else {
+                    callback(null)  // No se encontraron eventos
+                }
+            }
+            .addOnFailureListener { exception ->
+                // En caso de error
+                callback(null)
+            }
+    }
+
+
 }

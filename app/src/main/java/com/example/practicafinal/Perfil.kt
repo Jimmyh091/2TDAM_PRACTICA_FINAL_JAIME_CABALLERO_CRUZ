@@ -8,8 +8,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practicafinal.cartas.Carta
-import com.example.practicafinal.cartas.CartaAdapter
-import com.example.practicafinal.cartas.onCartaClickedListener
+import com.example.practicafinal.menu.CartaAdapter
+import com.example.practicafinal.menu.onCartaClickedListener
 import com.example.practicafinal.databinding.ActivityPerfilBinding
 import com.example.practicafinal.menu.Menu
 

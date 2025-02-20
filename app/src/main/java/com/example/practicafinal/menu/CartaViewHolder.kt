@@ -1,10 +1,11 @@
-package com.example.practicafinal.cartas
+package com.example.practicafinal.menu
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafinal.R
+import com.example.practicafinal.cartas.Carta
 
 class CartaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
