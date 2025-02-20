@@ -1,10 +1,12 @@
 package com.example.practicafinal
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,6 +19,9 @@ class Login : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var db_ref: DatabaseReference
+
+    //private lateinit var storage: StorageReference
+    private var rutaImagen: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -63,6 +68,16 @@ class Login : AppCompatActivity() {
             }
         }
 
+
+
+    }
+
+    private val accesoGaleria = registerForActivityResult(ActivityResultContracts.GetContent())
+    { uri: Uri? ->
+        if (uri != null) {
+            rutaImagen = uri
+            imagen.setImageURI(rutaImagen)
+        }
     }
 
     fun actualizarShared(usuario: Usuario){
