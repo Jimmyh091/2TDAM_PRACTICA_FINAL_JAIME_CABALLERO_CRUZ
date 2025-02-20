@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practicafinal.Perfil
 import com.example.practicafinal.R
 import com.example.practicafinal.cartas.Carta
@@ -93,6 +94,7 @@ class Menu : AppCompatActivity() {
             Carta()
         )
 
+        binding.menuRecyclerCartas.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.menuRecyclerCartas.adapter = CartaAdapter(cartas)
 
     }
