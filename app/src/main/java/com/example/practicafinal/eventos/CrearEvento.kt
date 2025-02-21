@@ -13,6 +13,7 @@ import com.example.practicafinal.Perfil
 import com.example.practicafinal.menu.Menu
 import com.example.practicafinal.R
 import com.example.practicafinal.databinding.ActivityCrearEventoBinding
+import com.google.firebase.database.FirebaseDatabase
 
 class CrearEvento : AppCompatActivity() {
 
@@ -103,9 +104,19 @@ class CrearEvento : AppCompatActivity() {
                         binding.crearEventoTietAforo.text.toString().toInt(),
                     )
 
-                    /* BD
-                    SUBIR EVENTO A LA BASE DE DATOS
-                    */
+                    val nombre = binding.crearEventoTietNombre.text.toString()
+
+                    isNombreEventoDisponible(nombre) { disponible ->
+                        if (disponible) {
+                            val database = FirebaseDatabase.getInstance().getReference("tienda").child("eventos")
+                            val nuevoEventoId = database.push().key ?: return@isNombreEventoDisponible
+                            val nuevoEvento = Evento(nombre)
+                            database.child(nuevoEventoId).setValue(nuevoEvento)
+                            Toast.makeText(this, "Evento creado correctamente", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Ya existe un evento con ese nombre", Toast.LENGTH_SHORT).show()
+                        }
+                    }
 
                     val intent = Intent(this, Menu::class.java)
                     startActivity(intent)
@@ -118,4 +129,23 @@ class CrearEvento : AppCompatActivity() {
 
         }
     }
+
+    fun isNombreEventoDisponible(nombre: String, onResult: (Boolean) -> Unit) {
+        val database = FirebaseDatabase.getInstance().getReference("tienda").child("eventos")
+
+        database.get().addOnSuccessListener { snapshot ->
+            var disponible = true
+            for (eventoSnapshot in snapshot.children) {
+                val nombreExistente = eventoSnapshot.child("nombre").getValue(String::class.java)
+                if (nombreExistente != null && nombreExistente.equals(nombre, ignoreCase = true)) {
+                    disponible = false
+                    break
+                }
+            }
+            onResult(disponible)
+        }.addOnFailureListener {
+            onResult(false) // En caso de error, asumimos que no está disponible
+        }
+    }
+
 }
