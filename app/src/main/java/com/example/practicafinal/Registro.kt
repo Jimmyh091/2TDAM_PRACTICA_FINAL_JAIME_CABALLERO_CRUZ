@@ -84,6 +84,11 @@ class Registro : AppCompatActivity() {
                     } else {
                         Util.subirUsuario(db_ref, usuario)
                         Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+
+                        actualizarShared(usuario)
+
+                        val intent = Intent(this, com.example.practicafinal.menu.Menu::class.java)
+                        startActivity(intent)
                     }
                 }
 
@@ -94,10 +99,6 @@ class Registro : AppCompatActivity() {
 
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
 
-                    actualizarShared(usuario)
-
-                    val intent = Intent(this, com.example.practicafinal.menu.Menu::class.java)
-                    startActivity(intent)
 
                 }else{
                     Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_SHORT).show()
@@ -167,17 +168,6 @@ class Registro : AppCompatActivity() {
         db_ref.child("tienda").child("usuarios").get().addOnSuccessListener { snapshot ->
             val usuarios = snapshot.children.mapNotNull { it.getValue(Usuario::class.java) }
             callback(usuarios) // Devuelve la lista al callback
-        }
-    }
-
-    fun registrarUsuario(db_ref: DatabaseReference, nuevoUsuario: Usuario) {
-        obtenerUsuarios(db_ref) { listaUsuarios ->
-            if (listaUsuarios.any { it.nombre == nuevoUsuario.nombre }) {
-                println("El usuario ya existe, elige otro nombre")
-            } else {
-                db_ref.child("tienda").child("usuarios").child(nuevoUsuario.nombre).setValue(nuevoUsuario)
-                println("Usuario registrado correctamente")
-            }
         }
     }
 
