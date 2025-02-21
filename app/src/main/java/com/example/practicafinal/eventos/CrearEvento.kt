@@ -96,13 +96,7 @@ class CrearEvento : AppCompatActivity() {
 
                 if (valido) {
 
-                    val evento = Evento(
-                        binding.crearEventoTietNombre.text.toString(),
-                        binding.crearEventoTietDescripcion.text.toString(),
-                        binding.crearEventoTietFecha.text.toString(),
-                        binding.crearEventoTietPrecio.text.toString().toFloat(),
-                        binding.crearEventoTietAforo.text.toString().toInt(),
-                    )
+                    var evento: Evento? = null
 
                     val nombre = binding.crearEventoTietNombre.text.toString()
 
@@ -110,6 +104,16 @@ class CrearEvento : AppCompatActivity() {
                         if (disponible) {
                             val database = FirebaseDatabase.getInstance().getReference("tienda").child("eventos")
                             val nuevoEventoId = database.push().key ?: return@isNombreEventoDisponible
+
+                            evento = Evento(
+                                nuevoEventoId,
+                                binding.crearEventoTietNombre.text.toString(),
+                                binding.crearEventoTietDescripcion.text.toString(),
+                                binding.crearEventoTietFecha.text.toString(),
+                                binding.crearEventoTietPrecio.text.toString().toFloat(),
+                                binding.crearEventoTietAforo.text.toString().toInt()
+                            )
+
                             val nuevoEvento = Evento(nombre)
                             database.child(nuevoEventoId).setValue(nuevoEvento)
                             Toast.makeText(this, "Evento creado correctamente", Toast.LENGTH_SHORT).show()

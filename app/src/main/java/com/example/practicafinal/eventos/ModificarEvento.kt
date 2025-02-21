@@ -12,10 +12,17 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.practicafinal.Perfil
 import com.example.practicafinal.menu.Menu
 import com.example.practicafinal.R
+import com.example.practicafinal.Util
+import com.example.practicafinal.cartas.Carta
 import com.example.practicafinal.databinding.ActivityModificarEventoBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class ModificarEvento : AppCompatActivity() {
-    
+
+    private lateinit var db_ref: DatabaseReference
+    private lateinit var id_firebase : String
+
     private lateinit var binding: ActivityModificarEventoBinding
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +36,26 @@ class ModificarEvento : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        db_ref = FirebaseDatabase.getInstance().getReference("tienda").child("eventos")
+
+        if (intent.extras != null) {
+
+            var evento: Evento? = null
+            Util.obtenerEvento(db_ref, intent.extras!!.getString("evento")!!) {
+
+                if (it != null) {
+                    evento = it
+                }
+
+                id_firebase = evento?.id_firebase.toString()
+                binding.modificarEventoTietNombre.setText(evento?.nombre ?: "ERROR")
+                binding.modificarEventoTietDescripcion.setText(evento?.descripcion ?: "ERROR")
+                binding.modificarEventoTietPrecio.setText(evento?.precio.toString())
+                binding.modificarEventoTietAforo.setText(evento?.aforo_max.toString())
+
+            }
         }
 
         binding.modificarEventoBannerAtras.setOnClickListener {
@@ -96,6 +123,7 @@ class ModificarEvento : AppCompatActivity() {
                 if (valido) {
 
                     val evento = Evento(
+                        id_firebase,
                         binding.modificarEventoTietNombre.text.toString(),
                         binding.modificarEventoTietDescripcion.text.toString(),
                         binding.modificarEventoTietFecha.text.toString(),
