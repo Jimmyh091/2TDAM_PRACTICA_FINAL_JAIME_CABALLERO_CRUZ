@@ -15,6 +15,7 @@ import com.example.practicafinal.Perfil
 import com.example.practicafinal.menu.Menu
 import com.example.practicafinal.R
 import com.example.practicafinal.databinding.ActivityCrearCartaBinding
+import com.google.firebase.database.FirebaseDatabase
 
 class CrearCarta : AppCompatActivity() {
 
@@ -87,6 +88,7 @@ class CrearCarta : AppCompatActivity() {
 
                 if (valido) {
 
+
                     val carta = Carta(
                         binding.crearCartaTietTitulo.text.toString(),
                         binding.crearCartaTietDescripcion.text.toString(),
@@ -96,12 +98,22 @@ class CrearCarta : AppCompatActivity() {
                         binding.crearCartaTietStock.text.toString().toInt(),
                     )
 
-                    /* BD
-                    SUBIR CARTA A LA BASE DE DATOS
-                    */
+                    val nombre = binding.crearCartaTietTitulo.text.toString()
 
-                    val intent = Intent(this, Menu::class.java)
-                    startActivity(intent)
+                    isNombreCartaDisponible(nombre) { disponible ->
+                        if (disponible) {
+                            val database = FirebaseDatabase.getInstance().getReference("tienda").child("cartas")
+                            val nuevaCartaId = database.push().key ?: return@isNombreCartaDisponible
+                            val nuevaCarta = Carta(nombre)
+                            database.child(nuevaCartaId).setValue(nuevaCarta)
+                            println("Carta creada con éxito: $nombre")
+                            val intent = Intent(this, Menu::class.java)
+                            startActivity(intent)
+                        } else {
+                            println("El nombre de la carta '$nombre' ya está en uso.")
+                        }
+                    }
+
 
                 }else{
                     Toast.makeText(this, "Ya existe una carta con ese nombre", Toast.LENGTH_SHORT).show()
@@ -109,6 +121,25 @@ class CrearCarta : AppCompatActivity() {
             }
         }
     }
+
+    fun isNombreCartaDisponible(nombre: String, onResult: (Boolean) -> Unit) {
+        val database = FirebaseDatabase.getInstance().getReference("tienda").child("cartas")
+
+        database.get().addOnSuccessListener { snapshot ->
+            var disponible = true
+            for (cartaSnapshot in snapshot.children) {
+                val nombreExistente = cartaSnapshot.child("nombre").getValue(String::class.java)
+                if (nombreExistente != null && nombreExistente.equals(nombre, ignoreCase = true)) {
+                    disponible = false
+                    break
+                }
+            }
+            onResult(disponible)
+        }.addOnFailureListener {
+            onResult(false) // En caso de error, asumimos que no está disponible
+        }
+    }
+
 
     private val accesoGaleria = registerForActivityResult(ActivityResultContracts.GetContent())
     { uri: Uri? ->

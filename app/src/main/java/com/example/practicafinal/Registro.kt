@@ -41,7 +41,7 @@ class Registro : AppCompatActivity() {
             val contrasenia2 = binding.registroTietRepetirContrasenia.text.toString()
 
             db_ref = FirebaseDatabase.getInstance().getReference()
-            var listaUser = listOf(Usuario())//Util.obtenerUsuarios(db_ref)
+            var listaUser = listOf(Usuario()) // Util.obtenerUsuarios(db_ref)
 
             Log.v("lista", listaUser.toString())
 
