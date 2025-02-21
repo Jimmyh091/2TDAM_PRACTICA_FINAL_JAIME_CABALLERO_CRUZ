@@ -1,10 +1,13 @@
 package com.example.practicafinal.cartas
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -16,6 +19,10 @@ import com.example.practicafinal.databinding.ActivityCrearCartaBinding
 class CrearCarta : AppCompatActivity() {
 
     private lateinit var binding: ActivityCrearCartaBinding
+
+    //private lateinit var storage: StorageReference
+    private var rutaImagen: Uri? = null
+    private lateinit var imagen : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -48,9 +55,7 @@ class CrearCarta : AppCompatActivity() {
         binding.crearCartaSpinnerCategoria.adapter = adapter
 
         binding.crearCartaImagen.setOnClickListener{
-            /*
-            COGER IMAGEN DEL MOVIL
-            */
+            accesoGaleria.launch("image/*")
         }
 
         binding.crearCartaBotonCrear.setOnClickListener {
@@ -102,6 +107,14 @@ class CrearCarta : AppCompatActivity() {
                     Toast.makeText(this, "Ya existe una carta con ese nombre", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private val accesoGaleria = registerForActivityResult(ActivityResultContracts.GetContent())
+    { uri: Uri? ->
+        if (uri != null) {
+            rutaImagen = uri
+            imagen.setImageURI(rutaImagen)
         }
     }
 }
