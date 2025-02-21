@@ -52,7 +52,7 @@ class CrearCarta : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listOf(resources.getStringArray(R.array.categorias)))
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.categorias))
         binding.crearCartaSpinnerCategoria.adapter = adapter
 
         binding.crearCartaImagen.setOnClickListener{
