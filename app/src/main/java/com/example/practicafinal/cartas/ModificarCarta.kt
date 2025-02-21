@@ -11,10 +11,16 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.practicafinal.Perfil
 import com.example.practicafinal.menu.Menu
 import com.example.practicafinal.R
+import com.example.practicafinal.Util
 import com.example.practicafinal.databinding.ActivityModificarCartaBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class ModificarCarta : AppCompatActivity() {
-    
+
+    private lateinit var db_ref: DatabaseReference
+    private lateinit var id_firebase : String
+
     private lateinit var binding: ActivityModificarCartaBinding
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +36,25 @@ class ModificarCarta : AppCompatActivity() {
             insets
         }
 
+        db_ref = FirebaseDatabase.getInstance().getReference("tienda").child("cartas")
 
+        if (intent.extras != null) {
+
+            var carta: Carta? = null
+            Util.obtenerCarta(db_ref, intent.extras!!.getString("carta")!!) {
+
+                if (it != null) {
+                    carta = it
+                }
+
+                id_firebase = carta?.id_firebase.toString()
+                binding.modificarCartaTietTitulo.setText(carta?.nombre ?: "ERROR")
+                binding.modificarCartaTietDescripcion.setText(carta?.descripcion ?: "ERROR")
+                binding.modificarCartaTietPrecio.setText(carta?.precio.toString())
+                binding.modificarCartaTietStock.setText(carta?.stock.toString())
+
+            }
+        }
 
         binding.modificarCartaBannerAtras.setOnClickListener {
             finish()
@@ -86,6 +110,7 @@ class ModificarCarta : AppCompatActivity() {
                 if (valido) {
 
                     val carta = Carta(
+                        id_firebase,
                         binding.modificarCartaTietTitulo.text.toString(),
                         binding.modificarCartaTietDescripcion.text.toString(),
                         binding.modificarCartaSpinnerCategoria.selectedItem.toString(),
@@ -94,9 +119,7 @@ class ModificarCarta : AppCompatActivity() {
                         binding.modificarCartaTietStock.text.toString().toInt(),
                     )
 
-                    /* BD
-                    ACTUALIZAR CARTA A LA BASE DE DATOS
-                    */
+                    db_ref.child(id_firebase).setValue(carta)
 
                     val intent = Intent(this, Menu::class.java)
                     startActivity(intent)
