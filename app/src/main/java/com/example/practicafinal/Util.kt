@@ -39,19 +39,22 @@ class Util {
                 }
         }
 
-
         fun subirUsuario(db_ref: DatabaseReference, usuario: Usuario) {
-            val a = db_ref.child("tienda").child("usuarios").push().key
-            db_ref.child("tienda").child("usuarios").child(a!!).setValue(usuario)
+            val k = db_ref.child("tienda").child("usuarios").push().key
+            db_ref.child("tienda").child("usuarios").child(k!!).setValue(usuario)
+
+            usuario.id_firebase = k
         }
 
         fun borrarUsuario(db_ref: DatabaseReference, nombre: String) {
             db_ref.child("tienda").child("usuarios").child(nombre).removeValue()
         }
 
-        fun modificarUsuario(db_ref: DatabaseReference, nombre: String, usuario: Usuario) {
-            val a = db_ref.child("tienda").child("usuarios").push().key
-            db_ref.child("tienda").child("usuarios").child(a!!).setValue(usuario)
+        fun modificarUsuario(db_ref: DatabaseReference, usuario: Usuario) {
+            val k = db_ref.child("tienda").child("usuarios").push().key
+            db_ref.child("tienda").child("usuarios").child(k!!).setValue(usuario)
+
+            usuario.id_firebase = k
         }
 
         /*fun obtenerUsuarios(db_ref: DatabaseReference): List<Usuario> {

@@ -4,6 +4,7 @@ import com.example.practicafinal.cartas.Carta
 import com.example.practicafinal.eventos.Evento
 
 data class Usuario (
+    var id_firebase : String? = null,
     var admin : Boolean = false,
     var nombre : String = "User",
     var correo : String = "error@gmail.com",
