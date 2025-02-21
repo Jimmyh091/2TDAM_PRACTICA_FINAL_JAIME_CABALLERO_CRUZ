@@ -46,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/archivovacio" />
+            android:src="@drawable/cartamagicplantilla" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -163,7 +163,9 @@
                 app:layout_constraintStart_toStartOf="@+id/perfil_correo"
                 app:layout_constraintTop_toBottomOf="@+id/perfil_textview_dinero" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
+        app:cornerRadius="10dp"
+        android:backgroundTint="@color/rojo"
                 android:id="@+id/perfil_boton_aniadirDinero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

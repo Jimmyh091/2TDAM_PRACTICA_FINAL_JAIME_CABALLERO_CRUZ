@@ -22,9 +22,11 @@
         app:layout_constraintEnd_toEndOf="@+id/itemEvento_nombre"
         app:layout_constraintStart_toStartOf="@+id/itemEvento_nombre"
         app:layout_constraintTop_toBottomOf="@+id/itemEvento_nombre"
-        android:src="@drawable/archivovacio" />
+        android:src="@drawable/cartamagicplantilla" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="10dp"
+        android:backgroundTint="@color/rojo"
         android:id="@+id/itemEvento_boton_comprar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -25,6 +25,8 @@ class Entrada : AppCompatActivity() {
             insets
         }
 
+        binding.entradaLogo.setImageResource(R.drawable.magic)
+
         binding.entradaBotonInicioSesion.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
