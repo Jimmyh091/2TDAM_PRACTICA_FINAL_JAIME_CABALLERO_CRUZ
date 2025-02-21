@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practicafinal.cartas.Carta
+import com.example.practicafinal.cartas.VerCarta
 import com.example.practicafinal.menu.CartaAdapter
 import com.example.practicafinal.menu.onCartaClickedListener
 import com.example.practicafinal.databinding.ActivityPerfilBinding
@@ -90,18 +91,20 @@ class Perfil : AppCompatActivity(), onCartaClickedListener {
 
     fun modificarUsuarioCompleto(userId: String, nuevoUsuario: Usuario) {
         val database = FirebaseDatabase.getInstance()
-        val userRef = database.getReference("tienda").child("usuarios").child(userId)
+        val userRef = database.getReference("tienda").child("usuarios").child(nuevoUsuario.id_firebase!!)
 
         userRef.setValue(nuevoUsuario)
             .addOnSuccessListener {
-                println("Datos del usuario reemplazados correctamente")
+                Toast.makeText(this, "Usuario modificado correctamente", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { error ->
-                println("Error al modificar usuario: ${error.message}")
+                Toast.makeText(this, "Error al modificar el usuario: ${error.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
     override fun onCartaClicked(carta: Carta) {
-        TODO("Not yet implemented")
+        var intent = Intent(this, VerCarta::class.java)
+        intent.putExtra("carta", carta.id_firebase)
+        startActivity(intent)
     }
 }

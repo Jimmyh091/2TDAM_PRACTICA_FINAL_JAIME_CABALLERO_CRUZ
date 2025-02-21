@@ -88,24 +88,24 @@ class CrearCarta : AppCompatActivity() {
 
                 if (valido) {
 
-
-                    val carta = Carta(
-                        binding.crearCartaTietTitulo.text.toString(),
-                        binding.crearCartaTietDescripcion.text.toString(),
-                        binding.crearCartaSpinnerCategoria.selectedItem.toString(),
-                        binding.crearCartaTietPrecio.text.toString().toFloat(),
-                        null,
-                        binding.crearCartaTietStock.text.toString().toInt(),
-                    )
-
                     val nombre = binding.crearCartaTietTitulo.text.toString()
 
                     isNombreCartaDisponible(nombre) { disponible ->
                         if (disponible) {
                             val database = FirebaseDatabase.getInstance().getReference("tienda").child("cartas")
                             val nuevaCartaId = database.push().key ?: return@isNombreCartaDisponible
-                            val nuevaCarta = Carta(nombre)
-                            database.child(nuevaCartaId).setValue(nuevaCarta)
+
+                            val carta = Carta(
+                                nuevaCartaId,
+                                binding.crearCartaTietTitulo.text.toString(),
+                                binding.crearCartaTietDescripcion.text.toString(),
+                                binding.crearCartaSpinnerCategoria.selectedItem.toString(),
+                                binding.crearCartaTietPrecio.text.toString().toFloat(),
+                                null,
+                                binding.crearCartaTietStock.text.toString().toInt(),
+                            )
+
+                            database.child(nuevaCartaId).setValue(carta)
                             println("Carta creada con éxito: $nombre")
                             val intent = Intent(this, Menu::class.java)
                             startActivity(intent)
@@ -113,7 +113,6 @@ class CrearCarta : AppCompatActivity() {
                             println("El nombre de la carta '$nombre' ya está en uso.")
                         }
                     }
-
 
                 }else{
                     Toast.makeText(this, "Ya existe una carta con ese nombre", Toast.LENGTH_SHORT).show()
@@ -139,7 +138,6 @@ class CrearCarta : AppCompatActivity() {
             onResult(false) // En caso de error, asumimos que no está disponible
         }
     }
-
 
     private val accesoGaleria = registerForActivityResult(ActivityResultContracts.GetContent())
     { uri: Uri? ->

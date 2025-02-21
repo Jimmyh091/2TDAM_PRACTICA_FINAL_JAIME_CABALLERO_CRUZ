@@ -30,6 +30,8 @@ class ModificarCarta : AppCompatActivity() {
             insets
         }
 
+
+
         binding.modificarCartaBannerAtras.setOnClickListener {
             finish()
         }

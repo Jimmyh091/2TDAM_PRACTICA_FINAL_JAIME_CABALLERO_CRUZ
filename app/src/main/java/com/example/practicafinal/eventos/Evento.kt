@@ -3,6 +3,7 @@ package com.example.practicafinal.eventos
 import com.example.practicafinal.Usuario
 
 data class Evento (
+    var id_firebase: String? = null,
     var nombre: String = "Event",
     var descripcion: String = "Description",
     var fecha: String = ""/*?*/,

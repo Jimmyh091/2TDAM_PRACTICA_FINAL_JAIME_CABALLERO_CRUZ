@@ -1,6 +1,7 @@
 package com.example.practicafinal.cartas
 
 data class Carta (
+    var id_firebase : String? = null,
     var nombre: String = "Card",
     var descripcion: String = "Description",
     var categoria: String = "Category",

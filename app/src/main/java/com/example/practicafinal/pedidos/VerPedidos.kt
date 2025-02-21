@@ -2,6 +2,7 @@ package com.example.practicafinal.pedidos
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -48,6 +49,8 @@ class VerPedidos : AppCompatActivity() {
             listaPedidos.addAll(pedidos)
         }
 
+        Log.d("pedidos", listaPedidos.toString())
+
         binding.verPedidosRecycler.layoutManager = LinearLayoutManager(this)
         binding.verPedidosRecycler.adapter = PedidoAdapter(listaPedidos)
 
@@ -59,6 +62,7 @@ class VerPedidos : AppCompatActivity() {
 
         database.get().addOnSuccessListener { snapshot ->
             for (pedidoSnapshot in snapshot.children) {
+                Log.d("pedido", pedidoSnapshot.toString())
                 val pedido = pedidoSnapshot.getValue(Pedido::class.java)
                 pedido?.let { listaPedidos.add(it) }
             }
