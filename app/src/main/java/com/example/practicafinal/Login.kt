@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,7 +22,8 @@ class Login : AppCompatActivity() {
     private lateinit var db_ref: DatabaseReference
 
     //private lateinit var storage: StorageReference
-    private var rutaImagen: Uri? = null
+    private lateinit var imagen : ImageView
+    private lateinit var rutaImagen: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

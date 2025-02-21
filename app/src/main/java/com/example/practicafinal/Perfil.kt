@@ -2,6 +2,7 @@ package com.example.practicafinal
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +13,7 @@ import com.example.practicafinal.menu.CartaAdapter
 import com.example.practicafinal.menu.onCartaClickedListener
 import com.example.practicafinal.databinding.ActivityPerfilBinding
 import com.example.practicafinal.menu.Menu
+import com.google.firebase.database.FirebaseDatabase
 
 class Perfil : AppCompatActivity(), onCartaClickedListener {
 
@@ -52,10 +54,6 @@ class Perfil : AppCompatActivity(), onCartaClickedListener {
 
         binding.perfilBotonAniadirDinero.setOnClickListener {
 
-            /* BD
-            OBTENER DATOS USUARIO COGER CARTAS Y EVENTOS
-            */
-
             var listaCartas = mutableListOf("")
             var listaEventos = mutableListOf("")
 
@@ -76,9 +74,8 @@ class Perfil : AppCompatActivity(), onCartaClickedListener {
 
             binding.perfilDinero.text = usuarioActual.dinero.toString()
 
-            /* BD
-            ACTUALIZAR DINERO
-            */
+            modificarUsuarioCompleto(sp.getString("nombre", "")!!, usuarioActual)
+            Toast.makeText(this, "Dinero añadido", Toast.LENGTH_SHORT).show()
         }
 
         var listaCartas = listOf(Carta())
@@ -89,6 +86,19 @@ class Perfil : AppCompatActivity(), onCartaClickedListener {
         binding.perfilRecyclerEventos.layoutManager = LinearLayoutManager(this)
         binding.perfilRecyclerEventos.adapter = CartaAdapter(listaCartas, this)
 
+    }
+
+    fun modificarUsuarioCompleto(userId: String, nuevoUsuario: Usuario) {
+        val database = FirebaseDatabase.getInstance()
+        val userRef = database.getReference("tienda").child("usuarios").child(userId)
+
+        userRef.setValue(nuevoUsuario)
+            .addOnSuccessListener {
+                println("Datos del usuario reemplazados correctamente")
+            }
+            .addOnFailureListener { error ->
+                println("Error al modificar usuario: ${error.message}")
+            }
     }
 
     override fun onCartaClicked(carta: Carta) {

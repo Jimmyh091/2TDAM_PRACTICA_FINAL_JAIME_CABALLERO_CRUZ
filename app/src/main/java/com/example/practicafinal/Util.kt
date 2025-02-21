@@ -50,7 +50,8 @@ class Util {
         }
 
         fun modificarUsuario(db_ref: DatabaseReference, nombre: String, usuario: Usuario) {
-            db_ref.child("tienda").child("usuarios").child(nombre).setValue(usuario)
+            val a = db_ref.child("tienda").child("usuarios").push().key
+            db_ref.child("tienda").child("usuarios").child(a!!).setValue(usuario)
         }
 
         /*fun obtenerUsuarios(db_ref: DatabaseReference): List<Usuario> {

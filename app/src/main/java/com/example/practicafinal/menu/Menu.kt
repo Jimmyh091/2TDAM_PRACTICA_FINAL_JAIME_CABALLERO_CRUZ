@@ -16,9 +16,11 @@ import com.example.practicafinal.Perfil
 import com.example.practicafinal.R
 import com.example.practicafinal.cartas.Carta
 import com.example.practicafinal.cartas.CrearCarta
+import com.example.practicafinal.cartas.VerCarta
 import com.example.practicafinal.databinding.ActivityMenuBinding
 import com.example.practicafinal.eventos.CrearEvento
 import com.example.practicafinal.eventos.Evento
+import com.example.practicafinal.eventos.VerEvento
 import com.google.firebase.database.DatabaseReference
 
 class Menu : AppCompatActivity(), onCartaClickedListener, onEventoClickedListener {
@@ -115,13 +117,13 @@ class Menu : AppCompatActivity(), onCartaClickedListener, onEventoClickedListene
     }
 
     override fun onCartaClicked(carta: Carta) {
-        var intent = Intent(this, Carta::class.java)
+        var intent = Intent(this, VerCarta::class.java)
         intent.putExtra("carta", carta.nombre)
         startActivity(intent)
     }
 
     override fun onEventoClicked(evento: Evento) {
-        var intent = Intent(this, Evento::class.java)
+        var intent = Intent(this, VerEvento::class.java)
         intent.putExtra("carta", evento.nombre)
         startActivity(intent)
     }
