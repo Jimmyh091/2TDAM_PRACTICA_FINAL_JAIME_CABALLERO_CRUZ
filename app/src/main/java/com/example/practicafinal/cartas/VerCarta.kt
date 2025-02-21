@@ -63,7 +63,7 @@ class VerCarta : AppCompatActivity() {
             binding.verCartaCategoria.text = it?.categoria
             binding.verCartaDescripcion.text = it?.descripcion
             binding.verCartaStock.text = it?.stock.toString()
-            binding.verCartaImagen.setImageResource(it?.imagen) // ?
+            binding.verCartaImagen.setImageResource(R.drawable.archivovacio) // ?
         }
 
         val carta = Carta(
@@ -114,13 +114,5 @@ class VerCarta : AppCompatActivity() {
             }
 
         }
-    }
-
-    fun obtenerCarta(idCarta : String) : Carta {
-        /*
-        OBTENER CARTAS Y DEVOLVER LA QUE TIENE LA ID
-        */
-
-        return Carta()
     }
 }

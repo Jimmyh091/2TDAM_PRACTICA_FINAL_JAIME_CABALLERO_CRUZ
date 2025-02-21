@@ -41,9 +41,5 @@ class VerPedidos : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.verPedidosRecycler.setOnClickListener {
-
-        }
-
     }
 }

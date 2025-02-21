@@ -21,6 +21,7 @@ import com.example.practicafinal.databinding.ActivityMenuBinding
 import com.example.practicafinal.eventos.CrearEvento
 import com.example.practicafinal.eventos.Evento
 import com.example.practicafinal.eventos.VerEvento
+import com.example.practicafinal.pedidos.VerPedidos
 import com.google.firebase.database.DatabaseReference
 
 class Menu : AppCompatActivity(), onCartaClickedListener, onEventoClickedListener {
@@ -62,6 +63,14 @@ class Menu : AppCompatActivity(), onCartaClickedListener, onEventoClickedListene
 
             binding.menuBotonAniadirEvento.isEnabled = false
             binding.menuBotonAniadirEvento.isVisible = false
+
+            binding.menuBotonGestionarPedidos.isEnabled = false
+            binding.menuBotonGestionarPedidos.isVisible = false
+        }
+
+        binding.menuBotonGestionarPedidos.setOnClickListener {
+            val intent = Intent(this, VerPedidos::class.java)
+            startActivity(intent)
         }
 
         binding.menuBotonAniadirCarta.setOnClickListener {
