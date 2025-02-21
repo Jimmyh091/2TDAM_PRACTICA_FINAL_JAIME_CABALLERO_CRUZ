@@ -2,6 +2,7 @@ package com.example.practicafinal.menu
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -23,6 +24,7 @@ import com.example.practicafinal.eventos.Evento
 import com.example.practicafinal.eventos.VerEvento
 import com.example.practicafinal.pedidos.VerPedidos
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class Menu : AppCompatActivity(), onCartaClickedListener, onEventoClickedListener {
 
@@ -101,28 +103,21 @@ class Menu : AppCompatActivity(), onCartaClickedListener, onEventoClickedListene
             }
         }
 
-        val cartas = listOf(
-            Carta(),
-            Carta(),
-            Carta(),
-            Carta(),
-            Carta(),
-            Carta()
-        )
+        var listaCartas = mutableListOf<Carta>()
+        val cartas = obtenerCartas { cartas ->
+            listaCartas.addAll(cartas)
+        }
 
-        val eventos = listOf(
-            Evento(),
-            Evento(),
-            Evento(),
-            Evento(),
-            Evento()
-        )
+        var listaEventos = mutableListOf<Evento>()
+        val eventos = obtenerEventos { eventos ->
+            listaEventos.addAll(eventos)
+        }
 
         binding.menuRecyclerCartas.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.menuRecyclerCartas.adapter = CartaAdapter(cartas, this)
+        binding.menuRecyclerCartas.adapter = CartaAdapter(listaCartas, this)
 
         binding.menuRecyclerEventos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.menuRecyclerEventos.adapter = EventoAdapter(eventos, this)
+        binding.menuRecyclerEventos.adapter = EventoAdapter(listaEventos, this)
     }
 
     override fun onCartaClicked(carta: Carta) {
@@ -137,41 +132,36 @@ class Menu : AppCompatActivity(), onCartaClickedListener, onEventoClickedListene
         startActivity(intent)
     }
 
-    fun obtenerCartas(db_ref: DatabaseReference, callback: (List<Carta>?) -> Unit) {
-        db_ref.child("tienda").child("cartas").get()
-            .addOnSuccessListener { snapshot ->
-                // Comprobar si existen cartas en la base de datos
-                if (snapshot.exists()) {
-                    // Mapear las cartas y convertirlas en objetos Carta
-                    val cartas = snapshot.children.mapNotNull { it.getValue(Carta::class.java) }
-                    callback(cartas)  // Llamar al callback con la lista de cartas
-                } else {
-                    callback(null)  // No se encontraron cartas
-                }
+    fun obtenerCartas(onResult: (List<Carta>) -> Unit) {
+        val database = FirebaseDatabase.getInstance().getReference("tienda").child("cartas")
+        val listaCartas = mutableListOf<Carta>()
+
+        database.get().addOnSuccessListener { snapshot ->
+            for (cartaSnapshot in snapshot.children) {
+                val carta = cartaSnapshot.getValue(Carta::class.java)
+                carta?.let { listaCartas.add(it) }
             }
-            .addOnFailureListener { exception ->
-                // En caso de error
-                callback(null)
-            }
+            onResult(listaCartas)
+        }.addOnFailureListener { exception ->
+            exception.printStackTrace()
+            onResult(emptyList())
+        }
     }
 
-    fun obtenerEventos(db_ref: DatabaseReference, callback: (List<Evento>?) -> Unit) {
-        db_ref.child("tienda").child("eventos").get()
-            .addOnSuccessListener { snapshot ->
-                // Verifica si existen eventos en la base de datos
-                if (snapshot.exists()) {
-                    // Mapea los eventos y los convierte en objetos Evento
-                    val eventos = snapshot.children.mapNotNull { it.getValue(Evento::class.java) }
-                    callback(eventos)  // Llama al callback con la lista de eventos
-                } else {
-                    callback(null)  // No se encontraron eventos
-                }
-            }
-            .addOnFailureListener { exception ->
-                // En caso de error
-                callback(null)
-            }
-    }
+    fun obtenerEventos(onResult: (List<Evento>) -> Unit) {
+        val database = FirebaseDatabase.getInstance().getReference("tienda").child("eventos")
+        val listaEventos = mutableListOf<Evento>()
 
+        database.get().addOnSuccessListener { snapshot ->
+            for (eventoSnapshot in snapshot.children) {
+                val evento = eventoSnapshot.getValue(Evento::class.java)
+                evento?.let { listaEventos.add(it) }
+            }
+            onResult(listaEventos) // Devolvemos la lista cuando se completa
+        }.addOnFailureListener { exception ->
+            exception.printStackTrace()
+            onResult(emptyList()) // En caso de error, devolvemos una lista vacía
+        }
+    }
 
 }
