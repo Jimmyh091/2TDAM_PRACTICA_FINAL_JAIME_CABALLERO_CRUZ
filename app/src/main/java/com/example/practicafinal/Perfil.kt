@@ -81,10 +81,10 @@ class Perfil : AppCompatActivity(), onCartaClickedListener {
         var listaCartas = listOf(Carta())
 
         binding.perfilRecyclerCartas.layoutManager = LinearLayoutManager(this)
-        binding.perfilRecyclerCartas.adapter = CartaAdapter(listaCartas, this)
+        binding.perfilRecyclerCartas.adapter = CartaAdapter(listaCartas, this, this)
 
         binding.perfilRecyclerEventos.layoutManager = LinearLayoutManager(this)
-        binding.perfilRecyclerEventos.adapter = CartaAdapter(listaCartas, this)
+        binding.perfilRecyclerEventos.adapter = CartaAdapter(listaCartas, this, this)
 
     }
 

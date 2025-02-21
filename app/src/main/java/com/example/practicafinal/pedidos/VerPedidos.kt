@@ -6,10 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practicafinal.Perfil
 import com.example.practicafinal.R
 import com.example.practicafinal.databinding.ActivityVerPedidosBinding
 import com.example.practicafinal.menu.Menu
+import com.google.firebase.database.FirebaseDatabase
 
 class VerPedidos : AppCompatActivity() {
 
@@ -41,5 +43,31 @@ class VerPedidos : AppCompatActivity() {
             startActivity(intent)
         }
 
+        var listaPedidos = mutableListOf<Pedido>()
+        obtenerTodosLosPedidos { pedidos ->
+            listaPedidos.addAll(pedidos)
+        }
+
+        binding.verPedidosRecycler.layoutManager = LinearLayoutManager(this)
+        binding.verPedidosRecycler.adapter = PedidoAdapter(listaPedidos)
+
     }
+
+    fun obtenerTodosLosPedidos(onResult: (List<Pedido>) -> Unit) {
+        val database = FirebaseDatabase.getInstance().getReference("tienda").child("pedidos")
+        val listaPedidos = mutableListOf<Pedido>()
+
+        database.get().addOnSuccessListener { snapshot ->
+            for (pedidoSnapshot in snapshot.children) {
+                val pedido = pedidoSnapshot.getValue(Pedido::class.java)
+                pedido?.let { listaPedidos.add(it) }
+            }
+            onResult(listaPedidos) // Devolvemos la lista cuando se completa
+        }.addOnFailureListener { exception ->
+            exception.printStackTrace()
+            onResult(emptyList()) // En caso de error, devolvemos una lista vacía
+        }
+    }
+
+
 }

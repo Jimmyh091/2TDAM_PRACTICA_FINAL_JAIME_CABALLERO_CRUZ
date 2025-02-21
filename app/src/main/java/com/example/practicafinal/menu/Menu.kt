@@ -104,17 +104,17 @@ class Menu : AppCompatActivity(), onCartaClickedListener, onEventoClickedListene
         }
 
         var listaCartas = mutableListOf<Carta>()
-        val cartas = obtenerCartas { cartas ->
+        obtenerCartas { cartas ->
             listaCartas.addAll(cartas)
         }
 
         var listaEventos = mutableListOf<Evento>()
-        val eventos = obtenerEventos { eventos ->
+        obtenerEventos { eventos ->
             listaEventos.addAll(eventos)
         }
 
         binding.menuRecyclerCartas.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.menuRecyclerCartas.adapter = CartaAdapter(listaCartas, this)
+        binding.menuRecyclerCartas.adapter = CartaAdapter(listaCartas, this, this)
 
         binding.menuRecyclerEventos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.menuRecyclerEventos.adapter = EventoAdapter(listaEventos, this)
